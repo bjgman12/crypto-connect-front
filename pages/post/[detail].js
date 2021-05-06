@@ -1,23 +1,34 @@
-
-import Link from 'next/link'
-import { useState, useEffect} from 'react'
-import { ResponsiveContainer,AreaChart,XAxis,YAxis,Area,Tooltip,CartesianGrid} from 'recharts'
+import { useEffect , useState  } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
+import { ResponsiveContainer,AreaChart,XAxis,YAxis,Area,Tooltip,CartesianGrid} from 'recharts'
 
 
-export default function Coin( { price , priceChange, image, symbol,id } ){
+
+
+export default function Detail() {
+
+    const Post = () => {
+        const router = useRouter()
+        const { detail } = router.query
     
-
-    const [graphData,setGraphData] = useState([])
+        return detail
+        
+    }
 
     const formatData = data => {
         return data.map((el) => {
             return {
+            // do no recognize this time format
                 time: el[0],
                 price: el[1].toFixed(2),
             };
         });
     }
+    
+    const id = Post()
+
+    const [graphData,setGraphData] = useState([])
 
     let resData = ''
 
@@ -31,24 +42,15 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
         .catch(error => {
             console.error(error)
         })
-    },)
+    }, [])
 
     return (
-        <Link href={`post/${id}`}>
-        <div className='grid grid-cols-5 grid-rows-1 gap-1'>
-            <img className='h-10 ' src={image}/>
-            <p className=''> {symbol.toUpperCase()} </p>
-            <p> ${price.toFixed(2)} </p>
-            {priceChange > 0 ?
-            (
-            <p className='text-green-500'> {priceChange.toFixed(2)} </p>
-            ) :
-            (
-            <p className='text-red-500'> {priceChange.toFixed(2)} </p>
-            ) }
-            <ResponsiveContainer witdh='100%' height={100}>
-            <AreaChart data={graphData}>
-
+        <>
+        <h2> header here</h2>
+        <h2></h2>
+        <h2>market info here</h2>
+        <ResponsiveContainer witdh='70%' height={200}>
+           <AreaChart data={graphData}>
                <defs>
                    <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
                        <stop  offset="0%" stopColor="#245187" stopOpacity={0.4}/>
@@ -61,13 +63,14 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
                <XAxis 
                dataKey='time'
                axisLine={false}
-               tickLine={false}/>
+               tickLine={false}
+              />
 
                <yAxis 
                dataKey='price'
                axisLine={false}
                tickLine={false}
-               tickCount={8}
+               tickCount={8}Zillow
                tickFormatter={number => `$${number}`}
                />
 
@@ -78,9 +81,15 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
            </AreaChart>
         </ResponsiveContainer>
-        </div>
-        </Link> 
+        <h2> news here</h2>
+        <h2> w auth buy sell watch here</h2>
+        <h2> footer here</h2>
+        </>
     )
 }
+
+
+
+
 
 
