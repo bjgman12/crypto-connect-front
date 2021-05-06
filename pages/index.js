@@ -4,6 +4,8 @@ import React,{ useEffect,useState,useContext } from 'react'
 import coinGecko from '../services/coinGecko'
 import BarForm from '../components/searchBar'
 import News from '../components/news'
+import Header from '../components/header'
+import Mission from '../components/mission'
 
 export default function Home() {
     
@@ -39,19 +41,19 @@ export default function Home() {
         }
 
     return (
-        <>
-        <h1> Header here</h1>
-        <p>Mission statement here</p>
-        <BarForm onSearch={searchHandler}/>
-        <CoinListed filteredCoins={coinData}/>
-        <form onSubmit={pageHandler}>
-            <button> Next </button>
-            <button> Prev</button>
-        </form>
-        <News/>
-        <p> footer here </p>
+        <div className="bg-center bg-gray-800">
+            <Header/>
+            <Mission/>
+            <BarForm onSearch={searchHandler}/>
+            <CoinListed filteredCoins={coinData}/>
+            <form onSubmit={pageHandler}>
+                <button> Next </button>
+                <button> Prev</button>
+            </form>
+            <News/>
+            <p> footer here </p>
 
-        </>
+        </div>
     )
 }
 

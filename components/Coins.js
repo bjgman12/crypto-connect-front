@@ -18,7 +18,7 @@ export default function Coin( {name , price , priceChange, image, id } ){
             (
             <p className='text-red-500'> {priceChange.toFixed(2)} </p>
             ) }
-            <p> graph comingsoon </p>
+            <p> graph </p>
         </div>
         </Link>
     )
