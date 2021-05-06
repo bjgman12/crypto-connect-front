@@ -1,7 +1,5 @@
-import Coin from "../components/Coins";
 import CoinListed from "../components/listed";
-import React,{ useEffect,useState,useContext } from 'react'
-import coinGecko from '../services/coinGecko'
+import React,{ useEffect,useState, } from 'react'
 import BarForm from '../components/searchBar'
 import axios from 'axios'
 
@@ -35,7 +33,7 @@ export default function Home() {
 
     
     function searchHandler(values) {
-        if (values.query == ''){
+        if (values.query == false){
             setCoinPage(0)
             cacheCoins(0,4)
         }
@@ -55,39 +53,40 @@ export default function Home() {
         
     }    
 }
-function nextHandler(e){
-    e.preventDefault()
-    let temp = coinPage
-    if (temp > 23){
-        alert('no way forward from here')
-    }
-    else {
-    temp ++
-    setCoinPage(temp)
-    console.log(coinPage)
-    let start = coinPage * 4
-    let end = start + 4
-    cacheCoins(start,end)
-    }
-   
-  
-}
-
-function prevHandler(e){
-    e.preventDefault()
-    console.log(coinPage)
-    let temp = coinPage
-    if (temp > 0){
-        temp--
+    function nextHandler(e){
+        e.preventDefault()
+        let temp = coinPage
+        if (temp > 23){
+            alert('no way forward from here')
+        }
+        else {
+        temp ++
         setCoinPage(temp)
-        let start = coinPage*4
+        console.log(coinPage)
+        let start = coinPage * 4
         let end = start + 4
         cacheCoins(start,end)
+        }
+    
+    
     }
-    else{
-        alert('No way back from here')
+
+    function prevHandler(e){
+        e.preventDefault()
+        console.log(coinPage)
+        let temp = coinPage
+        if (temp > 0){
+            temp--
+            setCoinPage(temp)
+            let start = coinPage*4
+            let end = start + 4
+            cacheCoins(start,end)
+        }
+        else{
+            alert('No way back from here')
+        }
     }
-}
+
 
 
     return (
@@ -96,6 +95,7 @@ function prevHandler(e){
         <p>Mission statement here</p>
         <BarForm onSearch={searchHandler}/>
         <CoinListed filteredCoins={displayData}/>
+
         <form onSubmit={nextHandler}>
             <button type='submit'>Next</button>
         </form>
