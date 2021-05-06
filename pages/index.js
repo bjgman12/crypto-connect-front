@@ -3,8 +3,7 @@ import CoinListed from "../components/listed";
 import React,{ useEffect,useState,useContext } from 'react'
 import coinGecko from '../services/coinGecko'
 import BarForm from '../components/searchBar'
-
-
+import News from '../components/news'
 
 export default function Home() {
     
@@ -49,7 +48,7 @@ export default function Home() {
             <button> Next </button>
             <button> Prev</button>
         </form>
-        <p> news here </p>
+        <News/>
         <p> footer here </p>
 
         </>
