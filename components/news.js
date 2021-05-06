@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-console.log(process.env.REACT_APP_GUARDIAN_KEY)
+// console.log(process.env.REACT_APP_GUARDIAN_KEY)
 
 export default function News() {
     const [article1, setarticle1] = useState()
