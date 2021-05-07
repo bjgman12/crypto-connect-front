@@ -1,6 +1,10 @@
 import CoinListed from "../components/listed";
 import React,{ useEffect,useState, } from 'react'
 import BarForm from '../components/searchBar'
+import News from '../components/news'
+import Header from '../components/header'
+import Mission from '../components/mission'
+
 import axios from 'axios'
 
 
@@ -91,19 +95,25 @@ export default function Home() {
 
     return (
         <>
-        <h1> Header here</h1>
-        <p>Mission statement here</p>
-        <BarForm onSearch={searchHandler}/>
-        <CoinListed filteredCoins={displayData}/>
+            <Header/>
+      
+            <Mission/>
+      
+            <BarForm onSearch={searchHandler}/>
 
-        <form onSubmit={nextHandler}>
-            <button type='submit'>Next</button>
-        </form>
-        <form onSubmit={prevHandler}>
-            <button type='submit'>Prev</button>
-        </form>
-        <p> news here </p>
-        <p> footer here </p>
+            <CoinListed filteredCoins={displayData}/>
+
+            <form onSubmit={nextHandler}>
+                <button type='submit'>Next</button>
+            </form>
+      
+            <form onSubmit={prevHandler}>
+                <button type='submit'>Prev</button>
+            </form>
+      
+            <News/>
+      
+            <p> footer here </p>
 
         </>
     )

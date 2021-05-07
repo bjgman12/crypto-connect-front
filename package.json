@@ -8,7 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.1",
     "axios": "^0.21.1",
+    "dotenv": "^9.0.0",
     "chart.js": "^3.2.1",
     "next": "latest",
     "react": "^17.0.1",

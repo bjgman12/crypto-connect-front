@@ -21,7 +21,7 @@ export default function BarForm({onSearch}){
 
     return (
         <>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className="text-center">
             <input name='query' type='query' id='query' value={values.query} onChange={inputChangeHandler} placeholder='Search Crypto Here'/>
             <button type='submit'>search</button>
         </form>
