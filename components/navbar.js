@@ -34,7 +34,7 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <li className='flex-1'>
-                    <Link href='/'>
+                    <Link href='/loginform'>
                     <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Log-in</p>
                     </Link>
                 </li>
