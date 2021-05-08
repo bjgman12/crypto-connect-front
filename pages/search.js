@@ -6,9 +6,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 export default function Search() {
-   
-
-    const [search, setSearch] = useState()
+    const [search, setSearch] = useState(false)
     const [coinData,setCoinData] = useState([])
     const [searchCoinData, setSearchCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
@@ -38,6 +36,7 @@ export default function Search() {
 
     function searchHandler(values) {
         setCoinPage(0)
+        setSearch(true)
         // cacheCoins(0,4)
         console.log('values are', values)
         if (values.coin == ''){
@@ -122,17 +121,16 @@ export default function Search() {
 
 
     return (
-        <div className="bg-gray-800 h-screen">
+        <div className="bg-gray-900 h-screen overflow-scroll">
             <Header/>
             <SearchForm onSearch={searchHandler}/>
             <CoinListed filteredCoins={displayData}/>
-            <form onSubmit={nextHandler}>
-                    <button type='submit'>Next</button>
-                </form>
-        
-                <form onSubmit={prevHandler}>
-                    <button type='submit'>Prev</button>
-                </form>
+            <div className='w-full flex'>
+            <button className={search ? 'visible w-1/2 border-2 rounded-md bg-gray-800 text-white rounded-md' : 'invisible absolute'} onClick={prevHandler} >Prev</button>
+
+            <button className={search ? 'visible w-1/2 border-2 rounded-md bg-gray-800 text-white rounded-md' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
+            </div>
+            <br className='mb-8'/>
             <Footer/>
         </div>
     )
