@@ -13,34 +13,34 @@ export default function Navbar() {
                 {/* <Link to='/'>
                     Link Here
                 </Link> */}
-                <MenuIcon className={click ? "float-left absolute left-nav text-right w-0 h-0 text-purple-600" : 'float-right absolute left-nav top-4 w-10 h-10 text-purple-600'} onClick={handleClick}/>
-                <XIcon className={click ? "float-left absolute left-nav top-4  mb-100 text-right w-10 h-10 text-purple-600" : 'float-right absolute left-nav w-0 h-0 text-purple-600'} onClick={handleClick}/>
+                <MenuIcon className={click ? "float-left absolute left-nav text-right w-0 h-0 text-purple-600" : 'float-right absolute left-nav top-3 w-10 h-10 text-purple-600'} onClick={handleClick}/>
+                <XIcon className={click ? "float-left absolute left-nav top-3  mb-100 text-right w-10 h-10 text-purple-600" : 'float-right absolute left-nav w-0 h-0 text-purple-600'} onClick={handleClick}/>
             </nav>
-            <ul className={click ? 'visible mb-14 flex' : 'invisible'}>
-                <li className='flex-1 ml-1 '>
+            <ul className={click ? 'visible mb-14 grid grid-cols-5 grid-rows-1 gap-x-16 w-navbar text-center' : 'invisible'}>
+                <li className=''>
                     {/* <p onclick={closeMenu}>Test</p> */}
                     <Link href='/'>
-                        <a className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Home</a>
+                        <a className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Home</a>
                     </Link>
                 </li>
-                <li className='flex-1'>
+                <li className=''>
                     <Link href='/search'>
-                    <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Search</p>
+                    <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Search</p>
                     </Link>
                 </li>
-                <li className='flex-1'>
-                    <Link href='/'>
-                    <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Wallet</p>
+                <li className=''>
+                    <Link href='/wallet'>
+                    <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Wallet</p>
                     </Link>
                 </li>
-                <li className='flex-1'>
+                <li className=''>
                     <Link href='/'>
-                    <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Log-in</p>
+                    <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Log-in</p>
                     </Link>
                 </li>
-                <li className='flex-1'>
+                <li className=''>
                     <Link href='/'>
-                    <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Watch</p>
+                    <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Watch</p>
                     </Link>
                 </li>
             </ul>

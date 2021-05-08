@@ -71,8 +71,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
                tickFormatter={number => `$${number}`}
                />
 
+               <Tooltip wrapperStyle={{ top: 0, left: -135 }}/>
 
-               <Tooltip/>
 
                <CartesianGrid opacity={0.7} vertical={false} />
 
