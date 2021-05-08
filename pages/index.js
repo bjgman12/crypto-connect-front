@@ -4,7 +4,7 @@ import BarForm from '../components/searchBar'
 import News from '../components/news'
 import Header from '../components/header'
 import Mission from '../components/mission'
-
+import Footer from '../components/footer'
 import axios from 'axios'
 
 
@@ -21,7 +21,7 @@ export default function Home() {
         .then(res => {
             resData = res.data
             setCoinData(resData)
-            cacheCoins()
+            setDisplayData(resData.slice(0,4))
         })
         .catch(error => {
             console.error(error)
@@ -95,26 +95,28 @@ export default function Home() {
 
     return (
         <>
-            <Header/>
-      
-            <Mission/>
-      
-            <BarForm onSearch={searchHandler}/>
+            <div className="bg-gray-800 h-full">
+                <Header/>
+        
+                <Mission/>
+        
+                <BarForm onSearch={searchHandler}/>
 
-            <CoinListed filteredCoins={displayData}/>
+                <CoinListed filteredCoins={displayData}/>
 
-            <form onSubmit={nextHandler}>
-                <button type='submit'>Next</button>
-            </form>
-      
-            <form onSubmit={prevHandler}>
-                <button type='submit'>Prev</button>
-            </form>
-      
-            <News/>
-      
-            <p> footer here </p>
+                <form onSubmit={nextHandler}>
+                    <button type='submit'>Next</button>
+                </form>
+        
+                <form onSubmit={prevHandler}>
+                    <button type='submit'>Prev</button>
+                </form>
+        
+                <News/>
+        
+                <Footer/>
 
+            </div>
         </>
     )
 }
