@@ -24,12 +24,14 @@ export default function News() {
     }, [])
 
     return (
-        <div>
+        <div className="pb-10">
             <img src='https://www.usnews.com/dims4/USNEWS/0087eb5/2147483647/crop/1996x1310%2B3%2B0/resize/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2F0f%2F3e%2Fb10501f74fa6b123dad8dbc925a7%2F210416-stock.jpg' width='280'/>
-            <a href={ link1 }>{ article1 }</a>
+            <p className="text-white">{ article1 } </p>
+            <a className="text-purple-500" href={ link1 }>Click to Read More</a>
             <br/>
             <img src='https://b2bm.s3.amazonaws.com/styles/default_image/s3/istock-1165342430_edited.jpg?itok=BilR0KOM' width='280'/>
-            <a href={ link2 }>{ article2 }</a>
+            <p className="text-white">{ article2 } </p>
+            <a className="text-purple-500" href={ link2 }>Click to Read More</a>
         </div>
     )
 }

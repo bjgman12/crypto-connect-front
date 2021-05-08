@@ -36,7 +36,7 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
     return (
         <Link href={`post/${id}`}>
-        <div className='grid grid-cols-5 grid-rows-1 gap-1'>
+        <div className='grid grid-cols-5 grid-rows-1 gap-.2'>
             <img className='h-10 ' src={image}/>
             <p className=''> {symbol.toUpperCase()} </p>
             <p> ${price.toFixed(2)} </p>
@@ -72,8 +72,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
                tickFormatter={number => `$${number}`}
                />
 
+               <Tooltip wrapperStyle={{ top: 0, left: -135 }}/>
 
-               <Tooltip/>
 
                <CartesianGrid opacity={0.7} vertical={false} />
 
