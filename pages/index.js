@@ -8,20 +8,30 @@ import Footer from '../components/footer'
 import axios from 'axios'
 
 
-export default function Home() {
+export default function Home(props) {
     
+    const [token,setToken] = useState(false)
     const [coinData,setCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
 
     let resData = ''
 
+    function AuthCheck(){
+        if (props.token) {
+            setToken(token)
+        }
+      
+    }
+
+    
     useEffect(() => {
         const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
         .then(res => {
             resData = res.data
             setCoinData(resData)
             setDisplayData(resData.slice(0,4))
+            AuthCheck()
         })
         .catch(error => {
             console.error(error)

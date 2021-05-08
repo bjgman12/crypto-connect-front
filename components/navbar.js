@@ -33,9 +33,9 @@ export default function Navbar() {
                     <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Wallet</p>
                     </Link>
                 </li>
-                <li className=''>
-                    <Link href='/'>
-                    <p className=' text-white absolute top-20 px-2 py-1 border-2 rounded-md border-purple-500'>Log-in</p>
+                <li className='flex-1'>
+                    <Link href='/loginform'>
+                    <p className='text-white absolute top-20 px-3 py-1 border-2 rounded-md border-purple-500'>Log-in</p>
                     </Link>
                 </li>
                 <li className=''>
