@@ -13,7 +13,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
     const formatData = data => {
         return data.map((el) => {
             return {
-                time: el[0],
+            // do no recognize this time format
+                time: new Intl.DateTimeFormat('en-US', {year: 'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second: '2-digit'}).format(el[0]),
                 price: el[1].toFixed(2),
             };
         });
@@ -31,7 +32,7 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
         .catch(error => {
             console.error(error)
         })
-    },)
+    },[])
 
     return (
         <Link href={`post/${id}`}>
