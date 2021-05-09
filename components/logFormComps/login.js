@@ -26,7 +26,7 @@ export default function LogForm() {
             <div className=''>
             <BannerLog/>
             <form className='bg-gray-900 block'>
-                <input className='w-3/4 bg-gray-800 ml-10 h-12 rounded-md' id='email'type='text' placeholder=' Email@anActualemail.com'/>
+                <input className='w-3/4 bg-gray-800 ml-10 h-12 rounded-md ' id='email'type='text' placeholder=' Email@anActualemail.com'/>
                 <input className='w-3/4 bg-gray-800 ml-10 mt-6 h-12 rounded-md' id='pass' type='password' placeholder=' Password'/>
                 { !logOrSign ? 
                 (<>

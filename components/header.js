@@ -8,7 +8,7 @@ export default function Header() {
             <div className="border-b-2">
                 {/* <MenuIcon className=" float-right text-right w-11 h-11 text-purple-600"/> */}
                 
-                <h1 className="text-purple-500 text-mobileHeader text-left font-bold ml-3 mb-2">Crypto-Connect</h1>
+                <h1 className="text-purple-500 text-lg text-left font-bold ml-3 mb-2">Crypto-Connect</h1>
                 <Navbar/>
             </div>
         </header>

@@ -7,9 +7,7 @@ import Header from '../../components/header'
 import MarketData from '../../components/market_data'
 import millify from 'millify'
 import Description from '../../components/detail_coin_description'
-
-
-
+import Link from 'next/link'
 
 export default function Detail() {
 
@@ -151,6 +149,7 @@ export default function Detail() {
         <MarketData vol={markData.vol} mCap={markData.mCap} high={markData.high_24h} low={markData.low_24h}/>
         <Description id={markData.id} desc={markData.desc} />
         <h2> news here</h2>
+        <Link href={`../transactions/buy/${id}`}>Buy</Link>
         <h2> w auth buy sell watch here</h2>
         <h2> footer here</h2>
         </section>

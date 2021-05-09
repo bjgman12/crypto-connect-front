@@ -7,7 +7,7 @@ export default function Wallet() {
 
     return(
         <>
-            <div className="bg-gray-800 h-screen">
+            <div className="bg-gray-900 h-screen">
                 <Header/>
                 <Balance/>
                 <Footer/>
