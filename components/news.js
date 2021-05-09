@@ -11,7 +11,10 @@ export default function News() {
     
 
     useEffect(() => {
-        const request = axios.get(`https://content.guardianapis.com/search?q=cryptocurrency&api-key=${process.env.REACT_APP_GUARDIAN_KEY}`)
+        let config = {
+            headers: {'Access-Control-Allow-Origin': '*'}
+        }
+        const request = axios.get(`https://content.guardianapis.com/search?q=cryptocurrency&api-key=${process.env.REACT_APP_GUARDIAN_KEY}`,config)
         .then(response => {
             setarticle1(response.data.response.results[0].webTitle)
             setlink1(response.data.response.results[0].webUrl)
@@ -24,14 +27,18 @@ export default function News() {
     }, [])
 
     return (
-        <div className="pb-10">
-            <img src='https://www.usnews.com/dims4/USNEWS/0087eb5/2147483647/crop/1996x1310%2B3%2B0/resize/640x420/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2F0f%2F3e%2Fb10501f74fa6b123dad8dbc925a7%2F210416-stock.jpg' width='280'/>
-            <p className="text-white">{ article1 } </p>
-            <a className="text-purple-500" href={ link1 }>Click to Read More</a>
-            <br/>
-            <img src='https://b2bm.s3.amazonaws.com/styles/default_image/s3/istock-1165342430_edited.jpg?itok=BilR0KOM' width='280'/>
-            <p className="text-white">{ article2 } </p>
-            <a className="text-purple-500" href={ link2 }>Click to Read More</a>
+        <div className="ml-3 bg-gradient-to-b from-gray-300 via-gray-100 to-white mt-4 mr-3 rounded-md pl-2 flex-wrap mb-24">
+            <h2 className='text-purple-800 text-lg font-semibold pt-3'> News</h2>
+            <div className='bg-white shadow-2xl pl-3 pt-1 rounded-lg w-80 mb-2'>
+            <p className="text-black font-semibold">{ article1 } </p>
+            <a className="text-purple-700 font-semibold" href={ link1 }>Click to Read More</a>
+            </div>
+
+            <div className='bg-white shadow-2xl pl-3 pt-1 rounded-lg w-80 mb-2 font-semibold' >
+            
+            <p className="text-black">{ article2 } </p>
+            <a className="text-purple-700" href={ link2 }>Click to Read More</a>
+            </div>
         </div>
     )
 }
