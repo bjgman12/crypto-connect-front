@@ -1,13 +1,13 @@
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       spacing: {
-        login: '250px',
-        nav: '330px',
-        navbar: '302px',
+        // login: '250px',
+        // nav: '330px',
+        // navbar: '302px',
         '1': '8px',
         '2': '12px',
         '3': '16px',

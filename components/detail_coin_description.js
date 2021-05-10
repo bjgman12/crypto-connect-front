@@ -1,9 +1,9 @@
 export default function Description(props){
     return (
         <>
-        <div className='text-white mt-2 h-full'>
-        <h3 className='font-bold text-lg'> About {props.id} : </h3>
-        <p className='text-sm overflow-hidden h-32 mt-2 rounded-md p-2 bg-gray-800'> {props.desc} </p>
+        <div className=' mt-2 h-full'>
+        <h3 className='font-bold text-lg text-purple-700'> About {props.id} : </h3>
+        <p className='text-sm overflow-scroll h-32 mt-2 rounded-md p-2 white font-semibold shadow-2xl'> {props.desc} </p>
         </div>
         </>
     )
