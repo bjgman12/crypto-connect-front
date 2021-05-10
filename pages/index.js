@@ -105,7 +105,7 @@ export default function Home(props) {
 
     return (
         <>
-            <div className="bg-gray-900 h-full">
+            <div className="bg-white h-full relative overflow-scroll">
                 <Header/>
         
                 <Mission/>
@@ -114,16 +114,17 @@ export default function Home(props) {
 
                 <CoinListed filteredCoins={displayData}/>
 
-                <form onSubmit={nextHandler}>
-                    <button type='submit'>Next</button>
-                </form>
+                <div className='w-full flex items-center justify-between px-4'>
+    
+                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white font-semibold font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
+                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white  font-semibold  font-sans shadow-2xl hover:bg-black'onClick={prevHandler}>Prev</button>
+                
         
-                <form onSubmit={prevHandler}>
-                    <button type='submit'>Prev</button>
-                </form>
+                </div>
         
                 <News/>
-        
+
+                <div className='bg-gradient-to-t from-gray-500 via-gray-300 to-white  w-screen mb-20 h-8'></div>
                 <Footer/>
 
             </div>
