@@ -37,7 +37,7 @@ export default function Balance() {
         <>
 
                 <div className='w-11/12 mx-auto flex text-purple-900'>
-                <CurrencyDollarIcon className='h-20' />
+                <CurrencyDollarIcon className='h-20  ' />
                 <p className='text-5xl pt-2 '>{portfolio}</p>
                 <p className='text-xs pt-2'>(Portfolio Value)</p>
                 </div>

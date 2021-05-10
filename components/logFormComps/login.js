@@ -61,12 +61,12 @@ export default function LogForm() {
                 <input className='w-3/4 bg-gray-500 ml-10 mt-6 h-12 rounded-md' id='pass' type='password' placeholder=' Password'/>
                 { !logOrSign ? 
                 (<>
-                <button className='w-3/4 bg-gray-800 ml-10 mt-8 h-12 rounded-md text-white font-semibold' id='log' type='submit'>Log In</button>
+                <button className='w-3/4 bg-gray-800 ml-10 mt-8 h-12 rounded-md text-white font-semibold hover:bg-black' id='log' type='submit'>Log In</button>
                 </>)
                 :
                 (<>
-                <input className='w-3/4 bg-gray-800 ml-10 mt-6 h-12 rounded-md' id='passCon' type='password' placeholder=" Confirm Password" />
-                <button className='w-3/4 bg-gray-500 ml-10 mt-8 h-12 rounded-md text-white font-semibold' id='sign' type='submit' value='sign'>Sign Up</button>
+                <input className='w-3/4 bg-gray-500 ml-10 mt-6 h-12 rounded-md' id='passCon' type='password' placeholder=" Confirm Password" />
+                <button className='w-3/4 bg-gray-800 ml-10 mt-8 h-12 rounded-md text-white font-semibold hover:bg-black hover:bold ' id='sign' type='submit' value='sign'>Sign Up</button>
                  </>)
                 }
             </form>
