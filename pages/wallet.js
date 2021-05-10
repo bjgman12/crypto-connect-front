@@ -7,7 +7,7 @@ export default function Wallet() {
 
     return(
         <>
-            <div className="bg-white h-screen">
+            <div className="bg-white h-full overflow-scroll ">
                 <Header/>
                 <div className='mb-20'></div>
                 <Balance/>
