@@ -86,6 +86,7 @@ export default function SearchForm({onSearch}){
                 <input className='py-1 ml-10 bg-gray-800 text-white rounded-md mb-3' type="radio" id='coin_search' name='coin_mm' value='coin_search' onClick={handleCoinClick}/>
                 <input className='py-1 ml-32 bg-gray-800 text-white rounded-md mb-3' type="radio" id='min_max' name='coin_mm' value='min_max' onClick={handleMinMaxClick}/>
             </div>
+
             <form onSubmit={coinFormHandler} className={coin ? 'visible w-11/12 shadow-2xl mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white text-center mb-4 ' : 'invisible absolute'}>
                 <div className=''>
                     <input className='w-3/4 bg-gray-500  rounded-lg h-8 text-center mt-3 mb-3' type="text" name='coin' id='coin' value={coinName.coin} onChange={inputChangeHandlerName} placeholder='Coin Name Here'></input>
@@ -109,6 +110,7 @@ export default function SearchForm({onSearch}){
                     </div>
                     
                     <button className={min_Max ? 'visible py-1 ml-10  w-3/4 bg-gray-800 text-white rounded-md mb-3 hover:bg-black hover:font-bold' : 'invisible absolute'}>Search</button>
+
                 </div>
             </form>
         
