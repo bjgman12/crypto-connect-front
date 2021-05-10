@@ -83,7 +83,7 @@ export default function SearchForm({onSearch}){
                 <label className='text-lg text-purple-700 ml-10' for='coin_search'>Coin Name</label>
                 <label className='text-lg text-purple-700 ml-10' for='min_max'>Min/Max Price</label>
                 <br/>
-                <input className='py-1 ml-14 bg-gray-800 text-white rounded-md mb-3' type="radio" id='coin_search' name='coin_mm' value='coin_search' onClick={handleCoinClick}/>
+                <input className='py-1 ml-10 bg-gray-800 text-white rounded-md mb-3' type="radio" id='coin_search' name='coin_mm' value='coin_search' onClick={handleCoinClick}/>
                 <input className='py-1 ml-32 bg-gray-800 text-white rounded-md mb-3' type="radio" id='min_max' name='coin_mm' value='min_max' onClick={handleMinMaxClick}/>
             </div>
 
