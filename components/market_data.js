@@ -4,8 +4,8 @@ export default function MarketData(props){
 
     return (
         <>
-        <h2 className='text-white font-bold text-lg mt-8'> Market Data: </h2>
-        <div className='text-white grid grid-cols-2 grid-rows-2 mt-2 gap-y-3 font-sans bg-gray-800 rounded-md p-2'>
+        <h2 className='text-purple-700 font-bold text-lg mt-8'> Market Data: </h2>
+        <div className='text-black grid grid-cols-2 grid-rows-2 mt-2 gap-y-3 font-sans bg-white shadow-2xl rounded-md p-2rop-shadow-2xl p-2'>
       
         <section className="flex">
             <p className='text-sm'>Volume :</p>

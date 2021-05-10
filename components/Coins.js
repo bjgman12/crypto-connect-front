@@ -5,6 +5,7 @@ import { ResponsiveContainer,LineChart,XAxis,YAxis,Line,Tooltip,CartesianGrid} f
 import axios from 'axios'
 
 
+
 export default function Coin( { price , priceChange, image, symbol,id } ){
     
 

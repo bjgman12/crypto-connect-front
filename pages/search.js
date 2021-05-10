@@ -121,14 +121,14 @@ export default function Search() {
 
 
     return (
-        <div className="bg-gray-900 h-screen overflow-scroll">
+        <div className="bg-white h-full overflow-scroll relative ">
             <Header/>
             <SearchForm onSearch={searchHandler}/>
             <CoinListed filteredCoins={displayData}/>
-            <div className='w-full flex'>
-            <button className={search ? 'visible w-1/2 border-2 rounded-md bg-gray-800 text-white rounded-md' : 'invisible absolute'} onClick={prevHandler} >Prev</button>
+            <div className='w-11/12 mx-auto flex items-center justify-between'>
+            <button className={search ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'} onClick={prevHandler} >Prev</button>
 
-            <button className={search ? 'visible w-1/2 border-2 rounded-md bg-gray-800 text-white rounded-md' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
+            <button className={search ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
             </div>
             <br className='mb-8'/>
             <Footer/>
