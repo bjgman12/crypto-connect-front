@@ -1,15 +1,21 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
-export const userApi = 'https://stage-jlab-crypto.herokuapp.com/admin/crypto_api/user/'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'csrfToken'
 
-export async function postUserCre(values) {
+export const userApi = 'https://stage-jlab-crypto.herokuapp.com/api/users/'
+
+export async function postUserCre(values,cookie) {
     const body = {
-        username : values.username,
+        email : values.username,
         password : values.password
     }
 
-    const response = await axios.post(userApi,body)
 
+
+    const response = await axios.post(userApi,body)
+    console.log('RESPONSE',response.data)
     return response.data
 }
 

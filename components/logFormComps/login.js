@@ -44,12 +44,27 @@ export default function LogForm({test}) {
         e.preventDefault()
         const values = {
             username: e.target.email.value,
-            password: e.target.pass.value
-        }
+            password: e.target.pass.value}
+    
+        if (e.target.children[3].id == 'log')
+        {
         const res = await getToken(values)
         Cookies.set('token',res,{ expires:7 }, { domain : '0.0.0.0:3000'})
-
+        }
+        else {
+            if (e.target.pass.value != e.target.passCon.value){
+                alert('Password must match confirmation')
+            }
+            else {
+                let reqTok = Cookies.get()
+                await postUserCre(values,reqTok.csrftoken)
+                alert('Account Created Please LogIn')
+                flipHandler()
+            }
+        }
     }
+
+    
 
 
     return (
