@@ -3,9 +3,16 @@ import axios from 'axios'
 const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
 export async function getTransactions(token) {
-    const tokenAPI = 'transactions/'
+    const path = 'transactions/'
     const config = makeConfig(token)
-    const response = await axios.get(apiBase + tokenAPI, config)
+    const response = await axios.get(apiBase + path, config)
+    return response.data
+}
+
+export async function getBalance(token) {
+    const path = 'wallet/'
+    const config = makeConfig(token)
+    const response = await axios.get(apiBase + path, config)
     return response.data
 }
 
