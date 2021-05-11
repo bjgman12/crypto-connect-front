@@ -15,9 +15,11 @@ export default function Home(props) {
     const tok = Cookies.get('token')
     if (tok){
         const [token,setToken] = useState(Cookies.get('token'))
+        console.log('token here', token)
     }
     else {
         const [token,setToken] = useState(false)
+        console.log('no token', token)
     }
 
     const [coinData,setCoinData] = useState([])

@@ -6,6 +6,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie';
 
 export default function Buy(){
     const Post = () => {
@@ -28,7 +29,7 @@ export default function Buy(){
         }
         const request = axios.get(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&market_data=true&community_data=false`,config)
         .then(res => {
-            console.log("res is", res)
+            // console.log("res is", res)
             setCoinInfo(
                 { 
                     name: res.data.id,
@@ -49,6 +50,57 @@ export default function Buy(){
         setBuyPrice(e.target.value * coinInfo.curr_price)
     }
 
+    const buyHandler = (e) => {
+        e.preventDefault()
+        // let units = e.target.units.value
+        // let price = buyPrice
+        // let coin = coinInfo.name
+        // console.log('units are', units)
+        // console.log('price is', price)
+        // console.log('coin is', coin)
+        // let token_key = Cookies.get('token')
+        var cookies = Cookies.withConverter({
+            read: function (value, name) {
+              if (name === 'escaped') {
+                return unescape(value)
+              }
+              // Fall back to default for all other cookies
+              return Cookies.converter.read(value, name)
+            }
+          })
+        console.log('token is:', cookies) // this dont work
+
+        let values = {
+            user_id: 'anthony@anthony.com',
+            // user_id:,
+            // units: e.target.units.value,
+            units: 1,
+            // price: buyPrice,
+            price: 1,
+            coin: 'TEST',
+            transaction_type: "BUY"
+        }
+
+        const url = "https://stage-jlab-crypto.herokuapp.com/api/transactions/"
+
+        // const options = {
+        //     method: 'post',
+        //     url: url,
+        //     data: values
+        // }
+
+        // axios(options)
+
+        // const headers = {
+        //     'Authorization': 'JWT' + //token
+        // }
+        // axios.post(url, values)
+        // .then(function(response) {
+        //     console.log(response)
+        // })
+        
+    }
+
     return(
         <div className='bg-gray-900 h-screen'>
             <Header/>
@@ -59,7 +111,7 @@ export default function Buy(){
             <img className='mt-2 ml-2' src={coinInfo.logo}/>
 
             {/* make an on submit to send to the SQL database */}
-            <form className='text-white w-100 border-2 rounded-md border-purple-500 mt-2'>
+            <form className='text-white w-100 border-2 rounded-md border-purple-500 mt-2' onSubmit={buyHandler}>
                 <div className='grid grid-rows-4 grid-cols-1 items-center'>
                     <p className='text-xl text-center border-b-2 border-purple-500 mb-1 '>Amount (mock dollars): </p>
                     <p className='text-xl text-center'>${buyPrice}</p>
