@@ -1,4 +1,4 @@
-import CoinListed from "../components/listed";
+import CoinListed from "../components/listed"
 import React,{ useEffect,useState, } from 'react'
 import BarForm from '../components/searchBar'
 import News from '../components/news'
@@ -6,23 +6,25 @@ import Header from '../components/header'
 import Mission from '../components/mission'
 import Footer from '../components/footer'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+
 
 
 export default function Home(props) {
-    
-    const [token,setToken] = useState(false)
+
+    const tok = Cookies.get('token')
+    if (tok){
+        const [token,setToken] = useState(Cookies.get('token'))
+    }
+    else {
+        const [token,setToken] = useState(false)
+    }
+
     const [coinData,setCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
 
     let resData = ''
-
-    function AuthCheck(){
-        if (props.token) {
-            setToken(token)
-        }
-      
-    }
 
     
     useEffect(() => {

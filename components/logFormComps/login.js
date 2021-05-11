@@ -3,11 +3,14 @@ import BannerLog from './logBanner'
 import axios from 'axios'
 import { postUserCre } from '../../services/postUser'
 import { getToken } from '../../services/login'
+import Cookies from 'js-cookie'
 
-export default function LogForm() {
+export default function LogForm({test}) {
 
     const[logOrSign,setLogOrsign] = useState(false)
     const[created,setCreated] = useState(false)
+
+    console.log(test)
 
     const flipHandler = () => {
         const log = true
@@ -43,10 +46,8 @@ export default function LogForm() {
             username: e.target.email.value,
             password: e.target.pass.value
         }
-
         const res = await getToken(values)
-
-        console.log(res)
+        Cookies.set('token',res,{ expires:7 }, { domain : '0.0.0.0:3000'})
 
     }
 
