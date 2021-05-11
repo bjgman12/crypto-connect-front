@@ -19,8 +19,7 @@ export default function Wallet() {
         //  TODO: Redirect to Sign In if token not present
         const token = Cookies.get('token')
         getTransactions(token).then(response => {
-            console.log(response[0])
-            const data = JSON.stringify(response[0])
+            const data = JSON.stringify(response)
             setTransactions(data)  
         })
 
@@ -41,8 +40,7 @@ export default function Wallet() {
             <Portfolio balance = { portfolio_balance }/>
             <Card balance = { cash_balance }/>
             <Coins/>
-            { transactions }
-            <History/>   
+            <History transactions = { transactions } />   
             <Footer/>
         </div>
     )
