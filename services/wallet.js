@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-export const userApi = 'https://stage-jlab-crypto.herokuapp.com/api/transactions/'
+const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
 export async function getTransactions(token) {
+    const tokenAPI = 'transactions/'
     const config = makeConfig(token)
-    const response = await axios.get(userApi, config)
+    const response = await axios.get(apiBase + tokenAPI, config)
     return response.data
 }
-
 
 function makeConfig(token) {
     return {
