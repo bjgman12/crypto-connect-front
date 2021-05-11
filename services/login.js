@@ -6,7 +6,7 @@ export async function getToken(values) {
     console.log(values)
     const response = await axios.post(login,values);
 
-    return response;
+    return response.data.token;
 
 
 }
