@@ -51,8 +51,10 @@ export default function Sell(){
     const sellHandler = (e) => {
         e.preventDefault()
         const token = Cookies.get('token')
+        const id = Cookies.get('user_id')
+
         const info = {
-            user_id: 4, // replace this with the user id
+            user_id: id,
             units: e.target.units.value,
             price: coinInfo.curr_price,
             coin: coinInfo.name,

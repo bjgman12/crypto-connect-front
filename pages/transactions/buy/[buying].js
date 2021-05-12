@@ -51,10 +51,10 @@ export default function Buy(){
     const purchaseHandler = (e) => {
         e.preventDefault()
         const token = Cookies.get('token')
-        // console.log('cookie token', token)
+        const id = Cookies.get('user_id')
 
         const info = {
-            user_id: 4, // replace this with the user id
+            user_id: id,
             units: e.target.units.value,
             price: coinInfo.curr_price,
             coin: coinInfo.name,
@@ -75,7 +75,7 @@ export default function Buy(){
             <Header/>
             <div className='flex'>
                 <p className='text-purple-700 text-3xl w-8/12 font-bold ml-2'>Buy {coinInfo.name}</p>
-                <p className='text-purple-700 text-sm w-4/12 '>Balance: (SQL here)</p>
+                <p className='text-purple-700 text-sm w-4/12'>Balance: (SQL here)</p>
             </div>
             <img className='mt-1 ml-2' src={coinInfo.logo}/>
 
