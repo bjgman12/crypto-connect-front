@@ -12,6 +12,8 @@ export default function Navbar() {
 
     function signOutHandler(){
         Cookies.remove('token')
+        Cookies.remove('email')
+        Cookies.remove('user_id')
         window.location.replace('/')
     }
     return (
