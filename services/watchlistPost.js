@@ -2,10 +2,15 @@ import axios from 'axios'
 
 const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
-export async function getTransactions(token,id,coinName) {
-    const tokenAPI = 'transactions/'
+export async function setWatchlist(token,user_id,coin_id) {
+    const tokenAPI = 'watchlist/'
+    const body = {
+        'user_id' : user_id,
+        'coin' : coin_id
+
+    }
     const config = makeConfig(token)
-    const response = await axios.get(apiBase + tokenAPI, config)
+    const response = await axios.post(apiBase + tokenAPI,body, config)
     return response.data
 }
 
