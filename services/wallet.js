@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
-export async function getTransactions(token) {
+export async function getTransactions(token,id,coinName) {
     const tokenAPI = 'transactions/'
     const config = makeConfig(token)
     const response = await axios.get(apiBase + tokenAPI, config)
