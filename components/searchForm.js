@@ -4,7 +4,7 @@ export default function SearchForm({onSearch}){
     // showing coin or min max
     const [coin, setCoin] = useState(false)
     const [min_Max, setMin_Max] = useState(false)
-    const [trueFalse, setTrueFalse] = useState(false)
+    const [trueFalse, setTrueFalse] = useState(true)
 
     const handleCoinClick = () => {
         setMin_Max(false)
@@ -16,10 +16,6 @@ export default function SearchForm({onSearch}){
         setMin_Max(!min_Max)
     }
 
-    // const handleTrueFalse = () => {
-    //     setTrueFalse(!trueFalse)
-    //     console.log("trueFalse is", trueFalse)
-    // }
     const handleTrue =() => {
         setTrueFalse(true)
     }
@@ -28,7 +24,6 @@ export default function SearchForm({onSearch}){
         setTrueFalse(false)
     }
 
-    // form values
     const initialValues = {
         coin: '',
         min: 0,
@@ -89,7 +84,7 @@ export default function SearchForm({onSearch}){
 
             <form onSubmit={coinFormHandler} className={coin ? 'visible w-11/12 shadow-2xl mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white text-center mb-4 ' : 'invisible absolute'}>
                 <div className=''>
-                    <input className='w-3/4 bg-gray-500  rounded-lg h-8 text-center mt-3 mb-3' type="text" name='coin' id='coin' value={coinName.coin} onChange={inputChangeHandlerName} placeholder='Coin Name Here'></input>
+                    <input className='w-3/4 bg-gray-500  rounded-lg h-8 text-center text-white mt-3 mb-3' type="text" name='coin' id='coin' value={coinName.coin} onChange={inputChangeHandlerName} placeholder='Coin Name Here'></input>
                     <br></br>
                     <button className={coin ? 'visible py-1  w-3/4 bg-gray-800 text-white rounded-lg mb-10 hover:bg-black hover:font-bold' : 'invisible absolute '}>Search</button>
                 </div>
@@ -99,14 +94,14 @@ export default function SearchForm({onSearch}){
                 <div>
                     <p className='text-md text-purple-700 w-3/4 mx-auto text-center'>Search by ascending or decending</p>
                     <div className='text-purple-700 flex-wrap'>
-                    <label className='text-xl ' for="min">MIN </label>
-                    <input className='ml-3 py-1 w-2/5 bg-gray-500 text-white rounded-md mt-3' type="number" min='1' name='min' id='min' value={values.min} onChange={inputChangeHandler} placeholder='1'></input>
+                    <label className='text-lg ' for="min">MIN </label>
+                    <input className='ml-3 py-1 w-2/5 bg-gray-500 text-white rounded-md mt-3' type="number" min='0' step='0.01' name='min' id='min' value={values.min} onChange={inputChangeHandler} placeholder='1'></input>
                     <label className='text-lg  ml-2' >ascending</label>
-                    <input className='py-1 ml-2 text-white rounded-md mb-3' type='radio' name='ascDes' id='true' value={values.ascDes=trueFalse} onClick={handleTrue} onChange={inputChangeHandler} />
-                    <label className='text-xl ' for="max">MAX</label>
-                    <input className='ml-3 py-1 w-2/5 bg-gray-500 text-white rounded-md mb-3' type="number" min='1' name='max' id='max' value={values.max} onChange={inputChangeHandler} placeholder='max'></input>
+                    <input className='py-1 ml-2 text-white rounded-md mb-3' type='radio' name='ascDes' id='true' value={values.ascDes=trueFalse} onClick={handleTrue} onChange={inputChangeHandler} required/>
+                    <label className='text-lg ' for="max">MAX</label>
+                    <input className='ml-3 py-1 w-2/5 bg-gray-500 text-white rounded-md mb-3' type="number" step='0.01' min={values.min} name='max' id='max' value={values.max} onChange={inputChangeHandler} placeholder='max'></input>
                     <label className='text-lg  ml-2'>decending</label>
-                    <input className='py-1 ml-2 bg-gray-800 text-white rounded-md mb-3' type='radio' name='ascDes' id='false' value={values.ascDes=trueFalse} onClick={handleFalse} onChange={inputChangeHandler} />
+                    <input className='py-1 ml-1 bg-gray-800 text-white rounded-md mb-3' type='radio' name='ascDes' id='false' value={values.ascDes=trueFalse} onClick={handleFalse} onChange={inputChangeHandler} />
                     </div>
                     
                     <button className={min_Max ? 'visible py-1 ml-10  w-3/4 bg-gray-800 text-white rounded-md mb-3 hover:bg-black hover:font-bold' : 'invisible absolute'}>Search</button>

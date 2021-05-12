@@ -40,6 +40,7 @@ export default function LogForm() {
             password: e.target.pass.value}
         console.log(e.target.children.length == 3)
     
+
         if (e.target.children.length == 3 )
         {
         const res = await getToken(values)

@@ -153,6 +153,8 @@ export default function Detail() {
         <MarketData vol={markData.vol} mCap={markData.mCap} high={markData.high_24h} low={markData.low_24h}/>
         <Description id={markData.id} desc={markData.desc} />
         <Link href={`../transactions/buy/${id}`}>Buy</Link>
+        <Link href={`../transactions/sell/${id}`}>Sell</Link>
+
         <News />
         <h2> w auth buy sell watch here</h2>
         <Footer />

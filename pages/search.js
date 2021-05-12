@@ -11,6 +11,7 @@ export default function Search() {
     const [searchCoinData, setSearchCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
+    const [showButtons, setShowButtons] = useState(false)
 
     let resData = ''
 
@@ -37,10 +38,8 @@ export default function Search() {
     function searchHandler(values) {
         setCoinPage(0)
         setSearch(true)
-        // cacheCoins(0,4)
         console.log('values are', values)
         if (values.coin == ''){
-            // console.log('values working')
             let min = values.min
             let max = values.max
             let trueFalse = values.ascDes
@@ -53,29 +52,27 @@ export default function Search() {
             })
 
             if (trueFalse == true){
-                console.log('true')
                 temp.sort((a, b) => (a.current_price > b.current_price) ? 1: -1)
+                setShowButtons(true)
                 setSearchCoinData(temp)
                 setDisplayData(temp.slice(0,4))
-                // setDisplayData(temp)
             } 
             if (trueFalse == false) {
-                console.log('false')
                 temp.sort((a, b) => (a.current_price > b.current_price) ? -1: 1)
+                setShowButtons(true)
                 setDisplayData(temp)
                 setSearchCoinData(temp)
                 setDisplayData(temp.slice(0,4))
             }
-            // console.log('temp is', temp)
             
         }
         else{
-            console.log('coin name working')
+            // console.log('coin name working')
             let temp = coinData
-            // console.log(temp)
             temp = temp.filter(function(coin) {
                 return coin.id == values.coin.toLowerCase()
             })
+            setShowButtons(false)
             setDisplayData(temp)
         }
     }
@@ -125,9 +122,9 @@ export default function Search() {
             <CoinListed filteredCoins={displayData}/>
 
             <div className='w-11/12 mx-auto flex items-center justify-between'>
-            <button className={search ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'} onClick={prevHandler} >Prev</button>
+            <button className={showButtons ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute' } onClick={prevHandler} >Prev</button>
 
-            <button className={search ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
+            <button className={showButtons ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
             </div>
             <br className='mb-8'/>
             <Footer/>
