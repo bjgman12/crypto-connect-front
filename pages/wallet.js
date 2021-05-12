@@ -33,6 +33,7 @@ export default function Wallet() {
             <Header/>
             <Portfolio balance = { portfolio_balance }/>
             <Card balance = { cash_balance }/>
+            <button className="px-2 bg-purple-400 border border-gray-400 rounded-md">Add To Wallet Placeholder</button>
             <Coins/>
             <History transactions = { transactions } />   
             <Footer/>
