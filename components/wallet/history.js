@@ -5,12 +5,12 @@ export default function History({ transactions }){
     
     const columns = [
         {
-          Header: 'Type',
-          accessor: 'transaction_type'
-        }, 
-        {
           Header: 'Coin',
           accessor: 'coin'
+        }, 
+        {
+          Header: 'Type',
+          accessor: 'transaction_type'
         }, 
         {
           Header: 'Price',
@@ -23,7 +23,7 @@ export default function History({ transactions }){
       ]
     
     return(
-        <div className='w-11/12 pl-2 mx-auto mt-14'>
+        <div className='w-11/12 p-2 mx-auto mt-8 rounded-lg bg-gradient-to-b from-gray-100 via-gray-50 to-white'>
             <h2 className='text-3xl text-purple-800'>History</h2>
             <Table data={transactions} columns={columns}></Table>
         </div>
