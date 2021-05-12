@@ -10,7 +10,7 @@ export default function Header() {
     
     return(
         <>
-        <header className='fixed top-0 bottom-0 left-0 right-0 h-16 bg-white rounded-sm shadow-xl'>
+        <header className='fixed top-0 bottom-0 left-0 right-0 z-50 h-16 bg-white rounded-sm shadow-xl'>
             <div className="flex justify-between h-10">
                 <Navbar/>
                 { isAuth == undefined ? (<></>)
