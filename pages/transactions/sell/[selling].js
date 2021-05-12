@@ -67,28 +67,36 @@ export default function Sell(){
     }
 
     return(
-        <div className='bg-gray-900 h-screen mt-20'>
-            <Header/>
-            <div className='flex'>
-                <p className='text-white text-3xl w-8/12 font-bold ml-2 mt-10'>Sell {coinInfo.name}</p>
-                <p className='text-white text-sm w-4/12 mt-20'>Balance: (SQL here)</p>
-            </div>
-            <img className='mt-2 ml-2' src={coinInfo.logo}/>
-
-            <form className='text-white w-100 border-2 rounded-md border-purple-500 mt-2' onSubmit={sellHandler}>
-                <div className='grid grid-rows-4 grid-cols-1 items-center'>
-                    <p className='text-xl text-center mb-1 text-purple-700'>Amount (mock dollars): </p>
-                    <p className='text-xl text-center text-purple-700'>${sellPrice}</p>
-                    <p className='text-sm text-purple-900 text-center'>Price Per Unit: ${coinInfo.curr_price}</p>
-                    <div className="flex w-3/4 items-center">
-                        <label className='w-full text-xl text-center text-purple-700'>Units</label>
-                        <input className='w-1/4 bg-gray-500' type='number' name='units' id='units' min='1' onChange={changeHandler}></input>
-                    </div>
+        <div className='bg-white h-screen  mt-16'>
+        <Header/>
+        <div className='flex  w-full items-center justify-between text-purple-700  pt-2'>
+            <p className='pl-1'>Owned Coins :(x.xx)</p>
+            <p className=' w-4/12 pl-4'>Balance:(x.xx)</p>
+     </div>
+        <div className='w-11/12 mx-auto text-center uppercase text-2xl text-black font-semibold mt-10 '> Sell {coinInfo.name}</div>
+        {/* make an on submit to send to the SQL database */}
+        <form className='text-white bg-transparent w-11/12 mx-auto  rounded-xl   mt-2' onSubmit={sellHandler}>
+            <div className='bg-gradient-to-tr from-black via-green-600 to-purple-800 pb-1 rounded-lg'>
+                <div className='flex items-center px-2  pt-1'>
+                <p className='text-xl text-center mb-1  pt-1'>Amount: </p>
+                <div className='flex'>
+                <p className='text-xl text-center pl-1 '>${sellPrice}</p>
+                <p className='text-red-500 text-sm font-semibold'>(mock dollars)</p>
                 </div>
-                <br/>
-                <button className='bg-gray-800 px-4 py-3 w-full round-md mt-1 hover:bg-gray-900'>Order</button>
-            </form>
+                </div>
+                <div className="flex w-11/12 mx-auto items-center justify-between  mt-20">
+                    <div>
+                    <label className=' text-xl text-center '>Units</label>
+                    <input className=' w-1/4 h-5 bg-black text-center ml-2 rounded-full' type='number' name='units' id='units' min='1' onChange={changeHandler}></input>
+                </div>
+                <img className='h-10' src={coinInfo.logo}/>
+                </div>
+            </div>
+            <p className='text-sm  text-left pl-2 pt-1'>Price Per Unit: ${coinInfo.curr_price}</p>
+            <button className='bg-black to-black borderpx-4 py-3 w-full   rounded-full  hover:bg-gray-500 '>Sell</button>
+        </form>
+        <Footer/>
 
-        </div>
+    </div>
     )
 }

@@ -74,7 +74,7 @@ export default function Buy(){
         <div className='bg-white h-screen  mt-16'>
             <Header/>
             <div className='flex  w-full items-center justify-between text-purple-700  pt-2'>
-                <p>Owned Coins :(x.xx)</p>
+                <p className='pl-1'>Owned Coins :(x.xx)</p>
                 <p className=' w-4/12 pl-4'>Balance:(x.xx)</p>
          </div>
             <div className='w-11/12 mx-auto text-center uppercase text-2xl text-black font-semibold mt-10 '> Buy {coinInfo.name}</div>
