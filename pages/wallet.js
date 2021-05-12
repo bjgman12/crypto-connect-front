@@ -5,7 +5,7 @@ import Card from '../components/wallet/card'
 import History from '../components/wallet/history'
 import Coins from '../components/wallet/coins'
 import React, {useState, useEffect} from 'react'
-import { getTransactions, getBalance } from '../services/transactions'
+import { getTransactions, getBalance } from '../services/wallet'
 import Cookies from 'js-cookie'
 
 

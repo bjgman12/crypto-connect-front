@@ -1,4 +1,4 @@
-import { currentCoins } from '/services/transactions'
+import { currentCoins } from '/services/wallet'
 import Table from './tableHelper'
 
 
