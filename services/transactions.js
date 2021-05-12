@@ -26,11 +26,20 @@ export async function postTransactions(token, prices) {
 
 export function currentCoins(transactions) {
     let coins = []
-    transactions.forEach((txn) => {
-        let txn_units = txn.transaction_type === "SELL" ? txn.units * - 1 : txn.units;
-        let current_units = coins[txn.coin] ? coins[txn.coin] : 0;
-        coins[txn.coin] = current_units + txn_units
+
+    transactions.forEach((txn) => {	
+        let txn_units = txn.transaction_type === "SELL" ? txn.units * - 1 : txn.units;   
+        let existing = coins.find(item => item.coin == txn.coin);
+        
+        if (existing){
+        	existing.units += txn_units
+        } else {
+            let new_coin = {coin: txn.coin, units: txn_units}
+            coins.push(new_coin)
+        }		             
     });
+
+    coins = coins.filter(coin => coin.units > 0);
     return coins
 }
 
