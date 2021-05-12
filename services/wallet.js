@@ -9,6 +9,12 @@ export async function getTransactions(token) {
     return response.data
 }
 
+export async function postTransactions(token, prices) {
+    const tokenAPI = 'transactions/'
+    const config = makeConfig(token)
+    const response = await axios.post(apiBase + tokenAPI, prices, config)
+}
+
 function makeConfig(token) {
     return {
         headers: {
