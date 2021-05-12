@@ -46,7 +46,7 @@ export default function LogForm({test}) {
             username: e.target.email.value,
             password: e.target.pass.value}
     
-        if (e.target.children[3].id == 'log')
+        if (e.target.children.length == 3)
         {
         const res = await getToken(values)
         Cookies.set('token',res,{ expires:7 }, { domain : '0.0.0.0:3000'})
