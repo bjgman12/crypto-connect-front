@@ -67,7 +67,7 @@ export default function Sell(){
     }
 
     return(
-        <div className='bg-gray-900 h-screen'>
+        <div className='bg-gray-900 h-screen mt-20'>
             <Header/>
             <div className='flex'>
                 <p className='text-white text-3xl w-8/12 font-bold ml-2 mt-10'>Sell {coinInfo.name}</p>
