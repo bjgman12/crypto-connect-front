@@ -97,8 +97,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
            </LineChart>
            </ResponsiveContainer>):
            (<div className='grid grid-rows-1 grid-cols-3 w-full '>
-           <SaveIcon className='h-10 mt-2 ml-6 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
-           <ResponsiveContainer height={100} width={200} className='col-span-2 pl-10 ml-20 z-0 '>
+           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
+           <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
             <LineChart data={graphData}>
 
                <defs>

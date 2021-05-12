@@ -113,8 +113,8 @@ export default function Home(props) {
 
                 <div className='w-full flex items-center justify-between px-4'>
     
-                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white  font-semibold font-sans shadow-2xl hover:bg-black'onClick={prevHandler}>Prev</button>
-                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white font-semibold  font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
+                    <button  className='w-2/5 bg-gray-500 rounded-full h-10 text-white  font-semibold font-sans shadow-2xl hover:bg-black 'onClick={prevHandler}>Prev</button>
+                    <button  className='w-2/5 bg-gray-500 rounded-full h-10 text-white font-semibold  font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
                 
         
                 </div>
