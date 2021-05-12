@@ -12,20 +12,15 @@ import Cookies from 'js-cookie'
 
 export default function Home(props) {
 
-    const tok = Cookies.get('token')
-    if (tok){
-        const [token,setToken] = useState(Cookies.get('token'))
-    }
-    else {
-        const [token,setToken] = useState(false)
-    }
+    
 
+    const [token,setToken] = useState(Cookies.get('token'))
     const [coinData,setCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
 
     let resData = ''
-
+    console.log(Cookies.get('user_id'))
     
     useEffect(() => {
         const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
@@ -108,8 +103,8 @@ export default function Home(props) {
     return (
         <>
             <div className="bg-white h-full relative overflow-scroll">
-                <Header/>
-        
+                <Header tokenpass={token}/>
+                <div className='mb-20'></div>
                 <Mission/>
         
                 <BarForm onSearch={searchHandler}/>
@@ -118,8 +113,8 @@ export default function Home(props) {
 
                 <div className='w-full flex items-center justify-between px-4'>
     
-                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white font-semibold font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
-                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white  font-semibold  font-sans shadow-2xl hover:bg-black'onClick={prevHandler}>Prev</button>
+                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white font-semibold  font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
+                    <button  className='w-2/5 bg-gray-500 rounded-lg h-10 text-white  font-semibold font-sans shadow-2xl hover:bg-black'onClick={prevHandler}>Prev</button>
                 
         
                 </div>
