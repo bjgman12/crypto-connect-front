@@ -34,10 +34,10 @@ export default function Portfolio({ transactions }){
     return(
         <div className='flex w-11/12 m-4 mx-auto text-purple-900 '>
             <CurrencyDollarIcon className='h-20'/>
-            <p className='pt-2 text-5xl'>
+            <p className='pt-2 text-5xl font-light'>
                 <NumberFormat value={ portfolioBalance }  displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2} />
             </p>
-            <p className='pt-2 text-xs '>(Coin Value)</p>
+            <p className='pt-2 text-xs'>(Coin Value)</p>
         </div>
     )
 }
