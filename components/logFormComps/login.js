@@ -44,6 +44,7 @@ export default function LogForm() {
         {
         const res = await getToken(values)
         Cookies.set('token',res,{ expires:7 }, { domain : '0.0.0.0:3000'})
+        Cookies.set('email',values.username, {expires:7}, {domain: '0.0.0.0:3000'})
         window.location.replace('/')
         }
         else {
