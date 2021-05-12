@@ -2,11 +2,18 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { MenuIcon } from '@heroicons/react/solid'
 import { XIcon } from '@heroicons/react/solid'
+import Cookies from 'js-cookie'
 
 export default function Navbar() {
     const [click, setClick] = useState(false)
     const handleClick = () => setClick(!click)
 
+    const token = Cookies.get('token')
+
+    function signOutHandler(){
+        Cookies.remove('token')
+        window.location.replace('/')
+    }
     return (
         <>
             <nav className=''>
@@ -27,10 +34,14 @@ export default function Navbar() {
                     <Link href='/wallet'>
                     <p className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg hover:font-bold hover:text-white'>Wallet</p>
                     </Link>
-                
-                    <Link href='/loginform'>
+                    { token ?
+                    (
+                    <button onClick={signOutHandler} className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg hover:font-bold hover:text-white'>Sign-Out</button>
+                    ):
+                    (<Link href='/loginform'>
                     <p className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg hover:font-bold hover:text-white'>Log-in</p>
-                    </Link>
+                    </Link>)
+                    }
                 
                     <Link href='/'>
                     <p className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg border-b-2 hover:font-bold hover:text-white'>Watch</p>
