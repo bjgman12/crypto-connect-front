@@ -24,6 +24,16 @@ export async function postTransactions(token, prices) {
     const response = await axios.post(apiBase + tokenAPI, prices, config)
 }
 
+export function currentCoins(transactions) {
+    let coins = []
+    transactions.forEach((txn) => {
+        let txn_units = txn.transaction_type === "SELL" ? txn.units * - 1 : txn.units;
+        let current_units = coins[txn.coin] ? coins[txn.coin] : 0;
+        coins[txn.coin] = current_units + txn_units
+    });
+    return coins
+}
+
 function makeConfig(token) {
     return {
         headers: {

@@ -19,7 +19,6 @@ export default function Wallet() {
     useEffect(() => {
         const token = Cookies.get('token')
         getTransactions(token).then(response => {
-            console.log(response)
             setTransactions(response)  
         })
 
@@ -37,7 +36,7 @@ export default function Wallet() {
             <Card balance = { cash_balance } email = { email }/>
             <div className='mb-10'></div>
             <button className="px-2 bg-purple-400 border border-gray-400 rounded-md">Add To Wallet Placeholder</button>
-            <Coins/>
+            <Coins  transactions = { transactions } />
             <History transactions = { transactions } />   
             <Footer/>
         </div>
