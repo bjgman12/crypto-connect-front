@@ -14,20 +14,13 @@ export default function Home(props) {
 
     
 
-    let tok = Cookies.get()
-    
-    if (tok){
-        const [token,setToken] = useState(Cookies.get('token'))}
-    else {
-        const [token,setToken] = useState(false)
-    }
-
+    const [token,setToken] = useState(Cookies.get('token'))
     const [coinData,setCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
 
     let resData = ''
-
+    console.log(Cookies.get('user_id'))
     
     useEffect(() => {
         const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
@@ -110,8 +103,8 @@ export default function Home(props) {
     return (
         <>
             <div className="bg-white h-full relative overflow-scroll">
-                <Header/>
-        
+                <Header tokenpass={token}/>
+                <div className='mb-20'></div>
                 <Mission/>
         
                 <BarForm onSearch={searchHandler}/>
