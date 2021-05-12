@@ -110,7 +110,8 @@ export default function Detail() {
     console.log(isAuth)
 
     return (
-        <section className='bg-white h-full pl-3 pr-3 overflow-scroll relative'>
+        <section className='bg-white h-full w-11/12  overflow-scroll relative'>
+        <div className='pl-2'> 
         <Header/> 
         <DetailBanner 
             title={markData.id}
@@ -155,6 +156,7 @@ export default function Detail() {
         </ResponsiveContainer>
         <MarketData vol={markData.vol} mCap={markData.mCap} high={markData.high_24h} low={markData.low_24h}/>
         <Description id={markData.id} desc={markData.desc} />
+        </div>
         { isAuth == undefined ? 
         (<><p>test</p></>):
         (<><OrderBanner id={id}/></>)}
