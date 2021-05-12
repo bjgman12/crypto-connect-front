@@ -14,6 +14,7 @@ export default function Wallet() {
     const [transactions, setTransactions] = useState([])
     const [cash_balance, setCashBalance] = useState("0.00")
     const [portfolio_balance, setPortfolioBalance] = useState('0.00')
+    const email = Cookies.get('email')
     
     useEffect(() => {
         const token = Cookies.get('token')
@@ -33,7 +34,8 @@ export default function Wallet() {
             <Header/>
             <div className='mb-20'></div>
             <Portfolio balance = { portfolio_balance }/>
-            <Card balance = { cash_balance }/>
+            <Card balance = { cash_balance } email = { email }/>
+            <div className='mb-10'></div>
             <button className="px-2 bg-purple-400 border border-gray-400 rounded-md">Add To Wallet Placeholder</button>
             <Coins/>
             <History transactions = { transactions } />   
