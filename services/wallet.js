@@ -4,6 +4,7 @@ const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
 
 
+
 export async function getTransactions(token) {
     const path = 'transactions/'
     const config = makeConfig(token)

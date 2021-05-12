@@ -10,7 +10,8 @@ import Description from '../../components/detail_coin_description'
 import Link from 'next/link'
 import News from '../../components/news'
 import Footer from '../../components/footer'
-
+import Cookies from 'js-cookie'
+import OrderBanner from '../../components/buysellBanner'
 
 
 export default function Detail() {
@@ -45,6 +46,7 @@ export default function Detail() {
     const id = Post()
 
     const [graphData,setGraphData] = useState([])
+    const [isAuth,setIsAuth] = useState(Cookies.get('token'))
 
     const [markData,setMarkData] = useState(
         {
@@ -105,6 +107,7 @@ export default function Detail() {
             console.error(error)
         })
     },[])
+    console.log(isAuth)
 
     return (
         <section className='bg-white h-full pl-3 pr-3 overflow-scroll relative'>
@@ -152,9 +155,10 @@ export default function Detail() {
         </ResponsiveContainer>
         <MarketData vol={markData.vol} mCap={markData.mCap} high={markData.high_24h} low={markData.low_24h}/>
         <Description id={markData.id} desc={markData.desc} />
-        <Link href={`../transactions/buy/${id}`}>Buy</Link>
-        <Link href={`../transactions/sell/${id}`}>Sell</Link>
-
+        { isAuth == undefined ? 
+        (<><p>test</p></>):
+        (<><OrderBanner id={id}/></>)}
+        
         <News />
         <h2> w auth buy sell watch here</h2>
         <Footer />
