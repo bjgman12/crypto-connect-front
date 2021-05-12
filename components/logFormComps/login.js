@@ -5,12 +5,15 @@ import { postUserCre } from '../../services/postUser'
 import { getToken } from '../../services/login'
 import Cookies from 'js-cookie'
 
-export default function LogForm({test}) {
+
+
+export default function LogForm() {
 
     const[logOrSign,setLogOrsign] = useState(false)
     const[created,setCreated] = useState(false)
+    
+    
 
-    console.log(test)
 
     const flipHandler = () => {
         const log = true
@@ -27,29 +30,21 @@ export default function LogForm({test}) {
 
     }
 
-    // async function signHandler(e){
-    //     e.preventDefault()
-    //     const values = {
-    //         username: e.target.email.value,
-    //         password: e.target.pass.value
-    //     }
 
-    //     const res = await postUserCre(values)
-    //     console.log(res)
-    //     setCreated(true)
-
-    // }
 
     async function logHandler(e){
         e.preventDefault()
+        
         const values = {
             username: e.target.email.value,
             password: e.target.pass.value}
+        console.log(e.target.children.length == 3)
     
-        if (e.target.children[3].id == 'log')
+        if (e.target.children.length == 3 )
         {
         const res = await getToken(values)
         Cookies.set('token',res,{ expires:7 }, { domain : '0.0.0.0:3000'})
+        window.location.replace('/')
         }
         else {
             if (e.target.pass.value != e.target.passCon.value){
@@ -70,7 +65,7 @@ export default function LogForm({test}) {
     return (
         <>
         <div className='flex items-center h-screen w-screen'>
-            <div className='w-screen'>
+            <div className='w-screen pb-20'>
             <BannerLog/>
             <form className='bg-gradient-to-b from-gray-300 via-gray-200 to-white block w-11/12 mx-auto rounded-lg s' onSubmit={logHandler}>
                 <input className='w-3/4 bg-gray-500 ml-10 h-12 rounded-md mt-4' id='email'type='text' placeholder=' Email@anActualemail.com'/>

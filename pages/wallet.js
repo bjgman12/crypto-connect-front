@@ -25,6 +25,7 @@ export default function Wallet() {
     return(
         <div className="h-full overflow-scroll bg-white">
             <Header/>
+            <div className='mb-20'></div>
             <Portfolio />
             <Balance />
             <Coins/>
