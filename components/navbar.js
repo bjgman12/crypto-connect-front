@@ -38,7 +38,7 @@ export default function Navbar() {
                     <p className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg hover:font-bold hover:text-white'>Wallet</p>
                     </Link>
                     <button onClick={signOutHandler} className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg hover:font-bold hover:text-white'>Sign-Out</button>
-                    <Link href='/'>
+                    <Link href='/watchlist'>
                     <p className='text-center pt-1 bg-white text-black font-sans font-medium  hover:bg-black hover:text-lg border-b-2 hover:font-bold hover:text-white'>Watch</p>
                     </Link>
                     </>
