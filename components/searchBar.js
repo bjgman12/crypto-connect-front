@@ -20,10 +20,10 @@ export default function BarForm({onSearch}){
     }
 
     return (
-        <div className='w-11/12 mx-auto '>.
-        <form onSubmit={submitHandler} className="flex mb-4 h-14 bg-white rounded-md w-full items-center justify-between p-4 shadow-xl">
-            <input className='h-8 w-3/4 bg-gray-900 rounded-3xl text-center text-white' name='query' type='query' id='query' value={values.query} onChange={inputChangeHandler} placeholder='Coin Name'/>
-            <button className='h-8 bg-gray-500 w-1/4 rounded-3xl ml-4 text-white hover:bg-black hover:font-bold' type='submit'>search</button>
+        <div className='w-11/12 mx-auto mt-4'>
+        <form onSubmit={submitHandler} className="flex items-center justify-between w-full p-4 mb-4 bg-white rounded-md shadow-xl h-14">
+            <input className='w-3/4 h-8 text-center text-white bg-gray-900 rounded-3xl' name='query' type='query' id='query' value={values.query} onChange={inputChangeHandler} placeholder='Coin Name'/>
+            <button className='w-1/4 h-8 ml-4 text-white bg-gray-500 rounded-3xl hover:bg-black hover:font-bold' type='submit'>search</button>
         </form>
         </div>
     );

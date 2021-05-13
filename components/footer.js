@@ -1,8 +1,8 @@
 export default function Footer() {
 
     return(
-        <div className='absolute bottom-0 left-0 text-md text-center font-semibold text-black shadow-2xl rounded-sm bg-white h-12 w-full '>
-            <p className=' pb-2 text-sm'>Created by Team-JLAB | May-2021</p>
+        <div className='absolute bottom-0 left-0 w-full h-12 font-semibold text-center text-black bg-white rounded-sm shadow-2xl text-md '>
+            <p className='pb-2 text-sm font-thin'>Created by Team-JLAB | May-2021</p>
             </div>
     )
 }

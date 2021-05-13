@@ -13,7 +13,6 @@ export default function Wallet() {
     
     const [transactions, setTransactions] = useState([])
     const [cash_balance, setCashBalance] = useState("0.00")
-    const [portfolio_balance, setPortfolioBalance] = useState('0.00')
     const email = Cookies.get('email')
     
     useEffect(() => {
@@ -26,18 +25,18 @@ export default function Wallet() {
             const data = response[0].balance
             setCashBalance(data)
         })
-    });
+    }, []);
     
     return(
-        <div className="h-full overflow-scroll bg-white">
+        <div className="relative h-full overflow-scroll bg-white">
             <Header/>
             <div className='mb-20'></div>
-            <Portfolio balance = { portfolio_balance }/>
+            <Portfolio transactions = { transactions }/>
             <Card balance = { cash_balance } email = { email }/>
             <div className='mb-10'></div>
-            <button className="px-2 bg-purple-400 border border-gray-400 rounded-md">Add To Wallet Placeholder</button>
             <Coins  transactions = { transactions } />
             <History transactions = { transactions } />   
+            <div className='w-screen h-8 mb-20 bg-gradient-to-t from-gray-100 via-gray-50 to-white'></div>
             <Footer/>
         </div>
     )

@@ -23,7 +23,7 @@ export default function History({ transactions }){
       ]
     
     return(
-        <div className='w-11/12 p-2 mx-auto mt-8 rounded-lg bg-gradient-to-b from-gray-100 via-gray-50 to-white'>
+        <div className='w-11/12 p-2 mx-auto mt-8 font-light rounded-lg bg-gradient-to-b from-gray-100 via-gray-50 to-white '>
             <h2 className='text-3xl text-purple-800'>History</h2>
             <Table data={transactions} columns={columns}></Table>
         </div>
