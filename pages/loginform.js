@@ -3,7 +3,7 @@ import Footer from '../components/footer'
 import Header from '../components/header'
 import BannerLog from '../components/logFormComps/logBanner'
 import LogForm from '../components/logFormComps/login'
-import { getToken, login } from '../services/login'
+import { getToken } from '../services/cryptoApi'
 
 export default function LogSign(){
 
@@ -21,7 +21,7 @@ export default function LogSign(){
 
 
     return (
-        <div className='h-screen bg-white  w-screen'>
+        <div className='w-screen h-screen bg-white'>
         <Header/>
         <LogForm onSubmit={loginHanlder}/>
         <Footer/>

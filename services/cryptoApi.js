@@ -1,8 +1,11 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
-const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
+const apiBase = process.env.CRYPTO_BASE_API
 
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'csrfToken'
 
 
 export async function getTransactions(token) {
@@ -45,6 +48,57 @@ export function currentCoins(transactions) {
     coins = coins.filter(coin => coin.units > 0);
     return coins
 }
+
+
+export async function getToken(values) {
+    const login = 'auth/login/'
+    const response = await axios.post(apiBase + login, values);
+    const token = response.data.key
+    Cookies.set('user_id',response.data.user_id, {expires:7},{domain : '0.0.0.0:3000'})
+
+    return token;
+}
+
+
+export async function postUserCre(values) {
+    const body = {
+        email : values.username,
+        password : values.password
+    }
+    const user = 'users/'
+    const response = await axios.post(apiBase + user, body)
+    return response.data
+}
+
+
+export async function delWatchList(token,id) {
+    const tokenAPI = `watchlist/${id}`
+    const config = makeConfig(token)
+    const response = await axios.delete(apiBase + tokenAPI, config)
+    return response.data
+}
+
+
+export async function setWatchlist(token,user_id,coin_id) {
+    const tokenAPI = 'watchlist/'
+    const body = {
+        'user_id' : user_id,
+        'coin' : coin_id
+
+    }
+    const config = makeConfig(token)
+    const response = await axios.post(apiBase + tokenAPI,body, config)
+    return response.data
+}
+
+
+export async function getWatchlist(token) {
+    const tokenAPI = 'watchlist/'
+    const config = makeConfig(token)
+    const response = await axios.get(apiBase + tokenAPI,config)
+    return response.data
+}
+
 
 function makeConfig(token) {
     return {

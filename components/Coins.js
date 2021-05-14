@@ -3,12 +3,10 @@ import Link from 'next/link'
 import { useState, useEffect} from 'react'
 import { ResponsiveContainer,LineChart,XAxis,YAxis,Line,Tooltip,CartesianGrid} from 'recharts'
 import axios from 'axios'
-import { setWatchlist } from '../services/watchlistPost'
 import Cookies from 'js-cookie'
 import { SaveIcon } from '@heroicons/react/outline'
 import { TrashIcon } from '@heroicons/react/solid'
-import { delWatchList } from '../services/watchListDelete'
-import { getWatchlist } from '../services/watchlistGet'
+import { delWatchList, setWatchlist, getWatchlist } from '../services/cryptoApi'
 import NumberFormat from 'react-number-format'
 
 
@@ -122,7 +120,7 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
             ) }
             </div>
             </Link>
-            <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl z-0'>
+            <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 mb-2 ml-2 mr-2 bg-white rounded-md shadow-2xl'>
             { ! isAuth  ?
             (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4'>
             <LineChart data={graphData}>
@@ -152,12 +150,12 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
            </LineChart>
            </ResponsiveContainer>):
 
-           (<div className='grid grid-rows-1 grid-cols-3 w-full '>
+           (<div className='grid w-full grid-cols-3 grid-rows-1 '>
             { ! isWatch ? (
-           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
+           <SaveIcon className='h-10 pr-4 mt-8 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
            (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700' onClick={deleter} />)
             }
-           <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
+           <ResponsiveContainer height={100} width={210} className='z-0 col-span-2 ml-20 '>
 
             <LineChart data={graphData}>
 
