@@ -6,6 +6,7 @@ import axios from 'axios'
 import { setWatchlist } from '../services/watchlistPost'
 import Cookies from 'js-cookie'
 import { SaveIcon } from '@heroicons/react/outline'
+import NumberFormat from 'react-number-format'
 
 
 
@@ -57,16 +58,18 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
     return (
         <Link href={`post/${id}`}>
-        <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl hover:bg-gray-300 z-0'>
+        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 mb-2 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
             <img className='h-8 mt-1 ml-4 ' src={image}/>
-            <p className='text-black font-semibold pt-2'> {symbol.toUpperCase()} </p>
-            <p className='text-black pt-2 font-semibold '> ${price.toFixed(2)} </p>
+            <p className='pt-2 font-semibold text-black'> {symbol.toUpperCase()} </p>
+            <p className='pt-2 font-semibold text-black justify-self-end'> 
+                <NumberFormat value={ price }  displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={2}/>
+            </p>
             {priceChange > 0 ?
             (
-            <p className='text-green-500 pt-2 col-span-2 pl-6 font-semibold'> +{priceChange.toFixed(2)}%</p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-green-500'> +{priceChange.toFixed(2)}%</p>
             ) :
             (
-            <p className='text-red-500 pt-2 col-span-2 pl-6 font-semibold'> {priceChange.toFixed(2)}% </p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-red-500'> {priceChange.toFixed(2)}%</p>
             ) }
             { ! isAuth  ?
             (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4'>
@@ -96,9 +99,9 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
            </LineChart>
            </ResponsiveContainer>):
-           (<div className='grid grid-rows-1 grid-cols-3 w-full '>
-           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
-           <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
+           (<div className='grid w-full grid-cols-3 grid-rows-1 '>
+           <SaveIcon className='h-10 pr-4 mt-8 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
+           <ResponsiveContainer height={100} width={210} className='z-0 col-span-2 ml-20 '>
             <LineChart data={graphData}>
 
                <defs>
