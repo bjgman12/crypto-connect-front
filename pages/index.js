@@ -24,7 +24,10 @@ export default function Home(props) {
     console.log(Cookies.get('user_id'))
     
     useEffect(() => {
-        const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        let config = {
+            headers:{'Access-Control-Allow-Origin':'*'}
+        }
+        const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false',config)
         .then(res => {
             resData = res.data
             setCoinData(resData)

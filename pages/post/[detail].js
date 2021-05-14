@@ -158,7 +158,7 @@ export default function Detail() {
         <Description id={markData.id} desc={markData.desc} />
         </div>
         { isAuth == undefined ? 
-        (<><p>test</p></>):
+        (<><p></p></>):
         (<><OrderBanner id={id}/></>)}
         
         <News />

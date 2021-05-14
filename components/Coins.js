@@ -52,10 +52,11 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
 
     async function addWatchList(){
         try{
-        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id).then( res => {
+        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id).then(res => {
             window.location.replace('/watchlist')
         })
-        return 0}
+    
+        return 0 }
         catch {
             alert('already in watchlist')
         }
@@ -90,8 +91,7 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
         }).then(res => {
             console.log('ASYNC',res)
             delWatchList(Cookies.get('token'),res).then( res => {
-
-            window.location.replace('/watchlist')
+                  window.location.replace('/watchlist')
             })
         })
             
