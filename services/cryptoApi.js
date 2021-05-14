@@ -4,6 +4,8 @@ import Cookies from 'js-cookie'
 
 const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
 
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'csrfToken'
 
 
 export async function getTransactions(token) {
@@ -55,6 +57,17 @@ export async function getToken(values) {
     Cookies.set('user_id',response.data.user_id, {expires:7},{domain : '0.0.0.0:3000'})
 
     return token;
+}
+
+
+export async function postUserCre(values) {
+    const body = {
+        email : values.username,
+        password : values.password
+    }
+    const user = 'users/'
+    const response = await axios.post(apiBase + user, body)
+    return response.data
 }
 
 

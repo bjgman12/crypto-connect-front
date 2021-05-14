@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import BannerLog from './logBanner'
-import axios from 'axios'
-import { postUserCre } from '../../services/postUser'
-import { getToken } from '../../services/cryptoApi'
+import { getToken, postUserCre } from '../../services/cryptoApi'
 import Cookies from 'js-cookie'
 
 
@@ -10,9 +8,6 @@ import Cookies from 'js-cookie'
 export default function LogForm() {
 
     const[logOrSign,setLogOrsign] = useState(false)
-    const[created,setCreated] = useState(false)
-    
-    
 
 
     const flipHandler = () => {
