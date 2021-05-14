@@ -18,6 +18,7 @@ export default function Home(props) {
     const [coinData,setCoinData] = useState([])
     const [displayData,setDisplayData] = useState([])
     const [coinPage,setCoinPage] = useState(0)
+    const isWatch = false
 
     let resData = ''
     console.log(Cookies.get('user_id'))
@@ -109,7 +110,7 @@ export default function Home(props) {
         
                 <BarForm onSearch={searchHandler}/>
 
-                <CoinListed filteredCoins={displayData}/>
+                <CoinListed filteredCoins={displayData} isWatch={isWatch}/>
 
                 <div className='w-full flex items-center justify-between px-4'>
     

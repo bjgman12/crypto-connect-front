@@ -6,18 +6,23 @@ import axios from 'axios'
 import { setWatchlist } from '../services/watchlistPost'
 import Cookies from 'js-cookie'
 import { SaveIcon } from '@heroicons/react/outline'
+import { TrashIcon } from '@heroicons/react/solid'
+import { delWatchList } from '../services/watchListDelete'
+import { getWatchlist } from '../services/watchlistGet'
 import NumberFormat from 'react-number-format'
 
 
 
 
-export default function Coin( { price , priceChange, image, symbol,id } ){
+
+export default function Coin( { price , priceChange, image, symbol,id , isWatch} ){
     
 
     const [graphData,setGraphData] = useState([])
     const [showAdd,setShowAdd] = useState(false)
     const [fill,setFill] = useState(false)
     const [isAuth,setIsAuth] = useState(false)
+    const [watchId,setWatchId] = useState(0)
 
     const formatData = data => {
         setIsAuth(Cookies.get('token'))
@@ -47,18 +52,62 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
     async function addWatchList(){
         try{
-        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id)
+        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id).then( res => {
+            window.location.replace('/watchlist')
+        })
         return 0}
         catch {
             alert('already in watchlist')
         }
     }
 
+
+ 
+
+    const formatId = data => {
+        let watchlist_Id = 0
+        for ( let i = 0 ; i < data.length ; i++){
+            console.log(data[i])
+            console.log(data[i].watchlist_id)
+            if (data[i].coin == id) {
+                watchlist_Id = data[i].watchlist_id
+            }
+        }
+        return watchlist_Id
+                   
+        }
+
+
+    
+
+
+
+    
+    async function  deleter(){
+            getWatchlist(Cookies.get('token'),Cookies.get('user_id')).then(res => {
+            console.log('GetWatchRes',res)
+            return formatId(res)
+        }).then(res => {
+            console.log('ASYNC',res)
+            delWatchList(Cookies.get('token'),res).then( res => {
+
+            window.location.replace('/watchlist')
+            })
+        })
+            
+
+
+        
+    
+    }
     
 
     return (
+        <>
         <Link href={`post/${id}`}>
+
         <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 mb-2 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
+
             <img className='h-8 mt-1 ml-4 ' src={image}/>
             <p className='pt-2 font-semibold text-black'> {symbol.toUpperCase()} </p>
             <p className='pt-2 font-semibold text-black justify-self-end'> 
@@ -71,6 +120,9 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
             (
             <p className='col-span-2 pt-2 pl-6 font-semibold text-red-500'> {priceChange.toFixed(2)}%</p>
             ) }
+            </div>
+            </Link>
+            <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl z-0'>
             { ! isAuth  ?
             (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4'>
             <LineChart data={graphData}>
@@ -99,9 +151,14 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
            </LineChart>
            </ResponsiveContainer>):
-           (<div className='grid w-full grid-cols-3 grid-rows-1 '>
-           <SaveIcon className='h-10 pr-4 mt-8 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
-           <ResponsiveContainer height={100} width={210} className='z-0 col-span-2 ml-20 '>
+
+           (<div className='grid grid-rows-1 grid-cols-3 w-full '>
+            { ! isWatch ? (
+           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
+           (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700' onClick={deleter} />)
+            }
+           <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
+
             <LineChart data={graphData}>
 
                <defs>
@@ -133,7 +190,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
            </div>)
            }
         </div>
-        </Link> 
+        </>
+        
     )
 }
 
