@@ -9,6 +9,8 @@ import { SaveIcon } from '@heroicons/react/outline'
 import { TrashIcon } from '@heroicons/react/solid'
 import { delWatchList } from '../services/watchListDelete'
 import { getWatchlist } from '../services/watchlistGet'
+import NumberFormat from 'react-number-format'
+
 
 
 
@@ -103,16 +105,20 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
     return (
         <>
         <Link href={`post/${id}`}>
-        <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  ml-2 mr-2 rounded-md rounded-b-none shadow-2xl hover:bg-gray-300 z-0'>
+
+        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 mb-2 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
+
             <img className='h-8 mt-1 ml-4 ' src={image}/>
-            <p className='text-black font-semibold pt-2'> {symbol.toUpperCase()} </p>
-            <p className='text-black pt-2 font-semibold '> ${price.toFixed(2)} </p>
+            <p className='pt-2 font-semibold text-black'> {symbol.toUpperCase()} </p>
+            <p className='pt-2 font-semibold text-black justify-self-end'> 
+                <NumberFormat value={ price }  displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={2}/>
+            </p>
             {priceChange > 0 ?
             (
-            <p className='text-green-500 pt-2 col-span-2 pl-6 font-semibold'> +{priceChange.toFixed(2)}%</p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-green-500'> +{priceChange.toFixed(2)}%</p>
             ) :
             (
-            <p className='text-red-500 pt-2 col-span-2 pl-6 font-semibold'> {priceChange.toFixed(2)}% </p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-red-500'> {priceChange.toFixed(2)}%</p>
             ) }
             </div>
             </Link>
@@ -145,12 +151,14 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
 
            </LineChart>
            </ResponsiveContainer>):
+
            (<div className='grid grid-rows-1 grid-cols-3 w-full '>
             { ! isWatch ? (
            <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
            (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700' onClick={deleter} />)
             }
            <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
+
             <LineChart data={graphData}>
 
                <defs>
