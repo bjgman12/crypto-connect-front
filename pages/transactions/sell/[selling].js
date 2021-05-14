@@ -26,6 +26,7 @@ export default function Sell(){
 
     const [cash_balance, setCashBalance] = useState("0.00")
     const [ownedCoins, setOwnedCoins] = useState('loading...')
+    const [unitsOwned, setUnitsOwned] = useState(0)
 
     useEffect(() => {
         let config = {
@@ -51,6 +52,7 @@ export default function Sell(){
                 let coins = currentCoins(response)
                 let resultCoins = coins.filter(coin => coin.coin == res.data.id);
                 if (resultCoins[0]){
+                    setUnitsOwned(resultCoins[0].units)
                     setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.data.market_data.current_price.usd).toFixed(2))
                 }
                 else{
@@ -84,10 +86,19 @@ export default function Sell(){
             coin: coinInfo.name,
             transaction_type: 'SELL'
         }
-        postTransactions(token, info).then(response => {
-            console.log(response)
-            window.location.replace('/wallet')
-        })
+
+        console.log("info[units] is", info[units])
+        if (info.units > unitsOwned){
+            alert('not enough units to sell')
+            info.units = 0
+        }
+        else{
+            postTransactions(token, info).then(response => {
+                console.log(response)
+                window.location.replace('/wallet')
+            })
+        }
+
     }
 
     return(
@@ -102,7 +113,7 @@ export default function Sell(){
                 <div className='w-3/8 text-center'>
                     <CreditCardIcon className='h-14 ml-2 w-3/4'/>
                     <p className='capitalize'>{coinInfo.name}</p>
-                    <p className=''>Owned: ${ownedCoins}</p>
+                    <p className=''>Units Owned: {unitsOwned}</p>
                 </div>
             </div>
         <div className='w-11/12 mx-auto text-center uppercase text-2xl text-black font-semibold mt-10 '> Sell {coinInfo.name}</div>
