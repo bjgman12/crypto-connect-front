@@ -32,9 +32,11 @@ export default function WatchList(){
             const names = formatNames(res)
             setFetchCoinNames(names.toString())
 
+            if (! fetchCoinNames == ''){
             getCoinData(names).then(res => {
                 setDisplayData(res)
             })
+        }
         })
 
         

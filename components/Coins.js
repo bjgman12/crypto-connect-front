@@ -106,7 +106,7 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
         <>
         <Link href={`post/${id}`}>
 
-        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 mb-2 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
+        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
 
             <img className='h-8 mt-1 ml-4 ' src={image}/>
             <p className='pt-2 font-semibold text-black'> {symbol.toUpperCase()} </p>
