@@ -43,7 +43,6 @@ export default function Sell(){
                 )
             const token = Cookies.get('token')
             getBalance(token).then(response => {
-                console.log(response)
                 const data = response[0].balance
                 setCashBalance(data)
             })
@@ -51,11 +50,11 @@ export default function Sell(){
             getTransactions(token).then(response => {
                 let coins = currentCoins(response)
                 let resultCoins = coins.filter(coin => coin.coin == res.data.id);
-                if (resultCoins){
+                if (resultCoins[0]){
                     setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.data.market_data.current_price.usd).toFixed(2))
                 }
                 else{
-                    alert('ResultCoins are false?')
+                    setOwnedCoins(0)
                 }
             })
             

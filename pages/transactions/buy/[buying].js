@@ -52,11 +52,11 @@ export default function Buy(){
             getTransactions(token).then(response => {
                 let coins = currentCoins(response)
                 let resultCoins = coins.filter(coin => coin.coin == res.data.id);
-                if (resultCoins){
+                if (resultCoins[0]){
                     setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.data.market_data.current_price.usd).toFixed(2))
                 }
-                else{
-                    alert('ResultCoins are false?')
+                else {
+                    setOwnedCoins(0)
                 }
             })
 
