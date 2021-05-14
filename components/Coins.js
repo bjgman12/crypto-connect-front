@@ -3,12 +3,10 @@ import Link from 'next/link'
 import { useState, useEffect} from 'react'
 import { ResponsiveContainer,LineChart,XAxis,YAxis,Line,Tooltip,CartesianGrid} from 'recharts'
 import axios from 'axios'
-import { setWatchlist } from '../services/watchlistPost'
 import Cookies from 'js-cookie'
 import { SaveIcon } from '@heroicons/react/outline'
 import { TrashIcon } from '@heroicons/react/solid'
-import { delWatchList } from '../services/cryptoApi'
-import { getWatchlist } from '../services/watchlistGet'
+import { delWatchList, setWatchlist, getWatchlist } from '../services/cryptoApi'
 import NumberFormat from 'react-number-format'
 
 

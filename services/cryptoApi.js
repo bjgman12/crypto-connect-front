@@ -79,6 +79,26 @@ export async function delWatchList(token,id) {
 }
 
 
+export async function setWatchlist(token,user_id,coin_id) {
+    const tokenAPI = 'watchlist/'
+    const body = {
+        'user_id' : user_id,
+        'coin' : coin_id
+
+    }
+    const config = makeConfig(token)
+    const response = await axios.post(apiBase + tokenAPI,body, config)
+    return response.data
+}
+
+
+export async function getWatchlist(token) {
+    const tokenAPI = 'watchlist/'
+    const config = makeConfig(token)
+    const response = await axios.get(apiBase + tokenAPI,config)
+    return response.data
+}
+
 
 function makeConfig(token) {
     return {

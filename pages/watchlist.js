@@ -1,7 +1,7 @@
 import { useState , useEffect } from 'react'
 import axios from 'axios'
 import Cookies, { get } from 'js-cookie'
-import { getWatchlist } from '../services/watchlistGet'
+import { getWatchlist } from '../services/cryptoApi'
 import Header from '../components/header'
 import Footer  from '../components/footer'
 import CoinListed from '../components/listed'
@@ -49,7 +49,7 @@ export default function WatchList(){
         <>
         <Header />
         <div className='mt-20'></div>
-        <h1 className='w-11/12 mx-auto text-center text-3xl font-lobster text-purple-700'> WatchList </h1>
+        <h1 className='w-11/12 mx-auto text-3xl text-center text-purple-700 font-lobster'> WatchList </h1>
         <CoinListed filteredCoins={displayData} isWatch={isWatch}/>
        
         <Footer />
