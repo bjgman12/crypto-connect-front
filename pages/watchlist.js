@@ -11,23 +11,28 @@ import { getCoinData } from '../services/coingecko'
 export default function WatchList(){
     const [fetchCoinNames,setFetchCoinNames] = useState('')
     const [displayData,setDisplayData] = useState([])
+    const isWatch = true
     
 
 
-    const formatData = data => {
+    const formatNames = data => {
         return data.map((el) => {
-            return el['coin']          
+            return el['coin']
+                
+                   
             });}
+
+
     
 
 
 
     useEffect(() => {
         getWatchlist(Cookies.get('token'),Cookies.get('user_id')).then(res => {
-            const test = formatData(res)
-            setFetchCoinNames(test.toString())
+            const names = formatNames(res)
+            setFetchCoinNames(names.toString())
 
-            getCoinData(test).then(res => {
+            getCoinData(names).then(res => {
                 setDisplayData(res)
             })
         })
@@ -42,7 +47,8 @@ export default function WatchList(){
         <>
         <Header />
         <div className='mt-20'></div>
-        <CoinListed filteredCoins={displayData}/>
+        <h1 className='w-11/12 mx-auto text-center text-3xl font-lobster text-purple-700'> WatchList </h1>
+        <CoinListed filteredCoins={displayData} isWatch={isWatch}/>
        
         <Footer />
         </>

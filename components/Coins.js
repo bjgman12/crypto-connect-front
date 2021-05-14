@@ -6,17 +6,21 @@ import axios from 'axios'
 import { setWatchlist } from '../services/watchlistPost'
 import Cookies from 'js-cookie'
 import { SaveIcon } from '@heroicons/react/outline'
+import { TrashIcon } from '@heroicons/react/solid'
+import { delWatchList } from '../services/watchListDelete'
+import { getWatchlist } from '../services/watchlistGet'
 
 
 
 
-export default function Coin( { price , priceChange, image, symbol,id } ){
+export default function Coin( { price , priceChange, image, symbol,id , isWatch} ){
     
 
     const [graphData,setGraphData] = useState([])
     const [showAdd,setShowAdd] = useState(false)
     const [fill,setFill] = useState(false)
     const [isAuth,setIsAuth] = useState(false)
+    const [watchId,setWatchId] = useState(0)
 
     const formatData = data => {
         setIsAuth(Cookies.get('token'))
@@ -46,18 +50,60 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
 
     async function addWatchList(){
         try{
-        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id)
+        await setWatchlist(Cookies.get('token'),Cookies.get('user_id'),id).then( res => {
+            window.location.replace('/watchlist')
+        })
         return 0}
         catch {
             alert('already in watchlist')
         }
     }
 
+
+ 
+
+    const formatId = data => {
+        let watchlist_Id = 0
+        for ( let i = 0 ; i < data.length ; i++){
+            console.log(data[i])
+            console.log(data[i].watchlist_id)
+            if (data[i].coin == id) {
+                watchlist_Id = data[i].watchlist_id
+            }
+        }
+        return watchlist_Id
+                   
+        }
+
+
+    
+
+
+
+    
+    async function  deleter(){
+            getWatchlist(Cookies.get('token'),Cookies.get('user_id')).then(res => {
+            console.log('GetWatchRes',res)
+            return formatId(res)
+        }).then(res => {
+            console.log('ASYNC',res)
+            delWatchList(Cookies.get('token'),res).then( res => {
+
+            window.location.replace('/watchlist')
+            })
+        })
+            
+
+
+        
+    
+    }
     
 
     return (
+        <>
         <Link href={`post/${id}`}>
-        <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl hover:bg-gray-300 z-0'>
+        <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  ml-2 mr-2 rounded-md rounded-b-none shadow-2xl hover:bg-gray-300 z-0'>
             <img className='h-8 mt-1 ml-4 ' src={image}/>
             <p className='text-black font-semibold pt-2'> {symbol.toUpperCase()} </p>
             <p className='text-black pt-2 font-semibold '> ${price.toFixed(2)} </p>
@@ -68,6 +114,9 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
             (
             <p className='text-red-500 pt-2 col-span-2 pl-6 font-semibold'> {priceChange.toFixed(2)}% </p>
             ) }
+            </div>
+            </Link>
+            <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl z-0'>
             { ! isAuth  ?
             (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4'>
             <LineChart data={graphData}>
@@ -97,7 +146,10 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
            </LineChart>
            </ResponsiveContainer>):
            (<div className='grid grid-rows-1 grid-cols-3 w-full '>
-           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>
+            { ! isWatch ? (
+           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
+           (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700' onClick={deleter} />)
+            }
            <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
             <LineChart data={graphData}>
 
@@ -130,7 +182,8 @@ export default function Coin( { price , priceChange, image, symbol,id } ){
            </div>)
            }
         </div>
-        </Link> 
+        </>
+        
     )
 }
 
