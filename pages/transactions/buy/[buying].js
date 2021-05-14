@@ -80,7 +80,7 @@ export default function Buy(){
         const info = {
             user_id: id,
             units: e.target.units.value,
-            price: coinInfo.curr_price,
+            price: Number.parseFloat(coinInfo.curr_price).toFixed(2),
             coin: coinInfo.name,
             transaction_type: 'BUY'
         }
