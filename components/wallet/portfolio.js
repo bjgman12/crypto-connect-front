@@ -2,7 +2,7 @@ import { CurrencyDollarIcon } from '@heroicons/react/solid'
 import { currentPrices } from '../../services/coingecko'
 import NumberFormat from 'react-number-format'
 import {useEffect, useState} from 'react'
-import { currentCoins } from '../../services/wallet'
+import { currentCoins } from '../../services/cryptoApi'
 
 export default function Portfolio({ transactions }){
     

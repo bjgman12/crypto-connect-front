@@ -1,4 +1,4 @@
-import { currentCoins } from '/services/wallet'
+import { currentCoins } from '/services/cryptoApi'
 import Table from './tableHelper'
 
 

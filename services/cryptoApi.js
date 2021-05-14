@@ -1,7 +1,8 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
+
 
 const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
-
 
 
 
@@ -45,6 +46,17 @@ export function currentCoins(transactions) {
     coins = coins.filter(coin => coin.units > 0);
     return coins
 }
+
+
+export async function getToken(values) {
+    const login = 'auth/login/'
+    const response = await axios.post(apiBase + login, values);
+    const token = response.data.key
+    Cookies.set('user_id',response.data.user_id, {expires:7},{domain : '0.0.0.0:3000'})
+
+    return token;
+}
+
 
 function makeConfig(token) {
     return {

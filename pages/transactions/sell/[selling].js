@@ -4,9 +4,8 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { postTransactions } from '../../../services/wallet';
 import Cookies from 'js-cookie'
-import { getBalance, currentCoins, getTransactions } from '../../../services/wallet'
+import { getBalance, currentCoins, getTransactions, postTransactions } from '../../../services/cryptoApi'
 import { CurrencyDollarIcon, CreditCardIcon } from '@heroicons/react/outline'
 
 
@@ -91,40 +90,40 @@ export default function Sell(){
     }
 
     return(
-        <div className='bg-white h-screen  mt-16'>
+        <div className='h-screen mt-16 bg-white'>
         <Header/>
-        <div className='flex w-full justify-around items-center text-purple-700 pt-2'>
-                <div className='w-3/8 text-center'>
-                    <Link href='../../wallet'><CurrencyDollarIcon className='h-14 ml-2 w-3/4'/></Link>
+        <div className='flex items-center justify-around w-full pt-2 text-purple-700'>
+                <div className='text-center w-3/8'>
+                    <Link href='../../wallet'><CurrencyDollarIcon className='w-3/4 ml-2 h-14'/></Link>
                     <p className=''>Usable Cash: </p>
                     <p className=''>${cash_balance}</p>
                 </div>
-                <div className='w-3/8 text-center'>
-                    <CreditCardIcon className='h-14 ml-2 w-3/4'/>
+                <div className='text-center w-3/8'>
+                    <CreditCardIcon className='w-3/4 ml-2 h-14'/>
                     <p className='capitalize'>{coinInfo.name}</p>
                     <p className=''>Owned: ${ownedCoins}</p>
                 </div>
             </div>
-        <div className='w-11/12 mx-auto text-center uppercase text-2xl text-black font-semibold mt-10 '> Sell {coinInfo.name}</div>
-        <form className='text-white bg-transparent w-11/12 mx-auto  rounded-xl   mt-2' onSubmit={sellHandler}>
-            <div className='bg-gradient-to-tr from-black via-green-600 to-purple-800 pb-1 rounded-lg'>
-                <div className='flex items-center px-2  pt-1'>
-                <p className='text-xl text-center mb-1  pt-1'>Amount: </p>
+        <div className='w-11/12 mx-auto mt-10 text-2xl font-semibold text-center text-black uppercase '> Sell {coinInfo.name}</div>
+        <form className='w-11/12 mx-auto mt-2 text-white bg-transparent rounded-xl' onSubmit={sellHandler}>
+            <div className='pb-1 rounded-lg bg-gradient-to-tr from-black via-green-600 to-purple-800'>
+                <div className='flex items-center px-2 pt-1'>
+                <p className='pt-1 mb-1 text-xl text-center'>Amount: </p>
                 <div className='flex'>
-                <p className='text-xl text-center pl-1 '>${sellPrice}</p>
-                <p className='text-red-500 text-sm font-semibold'>(mock dollars)</p>
+                <p className='pl-1 text-xl text-center '>${sellPrice}</p>
+                <p className='text-sm font-semibold text-red-500'>(mock dollars)</p>
                 </div>
                 </div>
-                <div className="flex w-11/12 mx-auto items-center justify-between  mt-20">
+                <div className="flex items-center justify-between w-11/12 mx-auto mt-20">
                     <div>
-                    <label className=' text-xl text-center '>Units</label>
-                    <input className=' w-1/4 h-5 bg-black text-center ml-2 rounded-full' type='number' name='units' id='units' min='1' onChange={changeHandler}></input>
+                    <label className='text-xl text-center '>Units</label>
+                    <input className='w-1/4 h-5 ml-2 text-center bg-black rounded-full ' type='number' name='units' id='units' min='1' onChange={changeHandler}></input>
                 </div>
                 <img className='h-10' src={coinInfo.logo}/>
                 </div>
             </div>
-            <p className='text-sm  text-left pl-2 pt-1'>Price Per Unit: ${coinInfo.curr_price}</p>
-            <button className='bg-black to-black borderpx-4 py-3 w-full   rounded-full  hover:bg-gray-500 '>Sell</button>
+            <p className='pt-1 pl-2 text-sm text-left'>Price Per Unit: ${coinInfo.curr_price}</p>
+            <button className='w-full py-3 bg-black rounded-full to-black borderpx-4 hover:bg-gray-500 '>Sell</button>
         </form>
         <Footer/>
 
