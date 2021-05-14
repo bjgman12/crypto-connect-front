@@ -2,9 +2,13 @@ import Header from '../../../components/header'
 import Footer from '../../../components/footer'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { postTransactions } from '../../../services/wallet';
 import Cookies from 'js-cookie'
+import { getBalance, currentCoins, getTransactions } from '../../../services/wallet'
+import { CurrencyDollarIcon, CreditCardIcon } from '@heroicons/react/outline'
+
 
 export default function Sell(){
     const Post = () => {
@@ -20,6 +24,9 @@ export default function Sell(){
         logo: 'loading...',
     })
 
+    const [cash_balance, setCashBalance] = useState("0.00")
+    const [ownedCoins, setOwnedCoins] = useState('loading...')
+
     useEffect(() => {
         let config = {
             headers:{'Access-Control-Allow-Origin':'*'}
@@ -34,6 +41,23 @@ export default function Sell(){
                     logo:res.data.image.small,
                  }
                 )
+            const token = Cookies.get('token')
+            getBalance(token).then(response => {
+                const data = response[0].balance
+                setCashBalance(data)
+            })
+    
+            getTransactions(token).then(response => {
+                let coins = currentCoins(response)
+                let resultCoins = coins.filter(coin => coin.coin == res.data.id);
+                if (resultCoins[0]){
+                    setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.data.market_data.current_price.usd).toFixed(2))
+                }
+                else{
+                    setOwnedCoins(0)
+                }
+            })
+            
         })
         .catch(error => {
             console.error(error)
@@ -44,7 +68,7 @@ export default function Sell(){
 
     const changeHandler = (e) => {
         e.preventDefault()
-        setSellPrice(e.target.value * coinInfo.curr_price)
+        setSellPrice(Number.parseFloat(e.target.value * coinInfo.curr_price).toFixed(2))
     }
 
     
@@ -69,12 +93,19 @@ export default function Sell(){
     return(
         <div className='bg-white h-screen  mt-16'>
         <Header/>
-        <div className='flex  w-full items-center justify-between text-purple-700  pt-2'>
-            <p className='pl-1'>Owned Coins :(x.xx)</p>
-            <p className=' w-4/12 pl-4'>Balance:(x.xx)</p>
-     </div>
+        <div className='flex w-full justify-around items-center text-purple-700 pt-2'>
+                <div className='w-3/8 text-center'>
+                    <Link href='../../wallet'><CurrencyDollarIcon className='h-14 ml-2 w-3/4'/></Link>
+                    <p className=''>Usable Cash: </p>
+                    <p className=''>${cash_balance}</p>
+                </div>
+                <div className='w-3/8 text-center'>
+                    <CreditCardIcon className='h-14 ml-2 w-3/4'/>
+                    <p className='capitalize'>{coinInfo.name}</p>
+                    <p className=''>Owned: ${ownedCoins}</p>
+                </div>
+            </div>
         <div className='w-11/12 mx-auto text-center uppercase text-2xl text-black font-semibold mt-10 '> Sell {coinInfo.name}</div>
-        {/* make an on submit to send to the SQL database */}
         <form className='text-white bg-transparent w-11/12 mx-auto  rounded-xl   mt-2' onSubmit={sellHandler}>
             <div className='bg-gradient-to-tr from-black via-green-600 to-purple-800 pb-1 rounded-lg'>
                 <div className='flex items-center px-2  pt-1'>
