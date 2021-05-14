@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 
-const apiBase = 'https://stage-jlab-crypto.herokuapp.com/api/'
+const apiBase = process.env.CRYPTO_BASE_API
 
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 axios.defaults.xsrfCookieName = 'csrfToken'
