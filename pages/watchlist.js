@@ -32,7 +32,7 @@ export default function WatchList(){
             const names = formatNames(res)
             setFetchCoinNames(names.toString())
 
-            if (names.length <= 50){
+            if (names.length <= 50 && names != ''){
             getCoinData(names).then(res => {
                 setDisplayData(res)
             })
