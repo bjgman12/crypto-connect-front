@@ -11,7 +11,7 @@ https://crypto-connect.vercel.app/
 *Make sure to use mobile view with iphoneX display settings*
 
 ## Authors
-*Click to be redirector to their linkedin page.*
+*Click to be redirected to their linkedin page.*
 
 [Anthony Beaver](https://www.linkedin.com/in/anthony-beaver/)
 
