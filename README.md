@@ -14,8 +14,11 @@ https://crypto-connect.vercel.app/
 *Click to be redirector to their linkedin page.*
 
 [Anthony Beaver](https://www.linkedin.com/in/anthony-beaver/)
+
 [Jae Choi](https://www.linkedin.com/in/choijy/)
+
 [Logan Jones](https://www.linkedin.com/in/loganemilyjones/)
+
 [Brandon Gonzalez](https://www.linkedin.com/in/bgonzalez38/)
 
 ## Version 1.0
