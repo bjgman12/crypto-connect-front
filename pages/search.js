@@ -1,7 +1,7 @@
-import Header from '../components/header'
+import Header from '../components/layout/header'
 import CoinListed from "../components/listed";
 import SearchForm from '../components/searchForm'
-import Footer from '../components/footer'
+import Footer from '../components/layout/footer'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 

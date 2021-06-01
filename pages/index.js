@@ -2,12 +2,12 @@ import CoinListed from "../components/listed"
 import React,{ useEffect,useState, } from 'react'
 import BarForm from '../components/searchBar'
 import News from '../components/news'
-import Header from '../components/header'
+import Header from '../components/layout/header'
 import Mission from '../components/mission'
-import Footer from '../components/footer'
+import Footer from '../components/layout/footer'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-
+import { getCoinData } from '../services/coingecko'
 
 
 export default function Home(props) {
@@ -24,9 +24,8 @@ export default function Home(props) {
     console.log(Cookies.get('user_id'))
     
     useEffect(() => {
-        const request = axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-        .then(res => {
-            resData = res.data
+        getCoinData('').then( res => {
+            resData = res
             setCoinData(resData)
             setDisplayData(resData.slice(0,4))
             AuthCheck()
@@ -103,19 +102,20 @@ export default function Home(props) {
 
     return (
         <>
-            <div className="bg-white h-full relative overflow-scroll">
+            <div className="bg-white h-full relative overflow-scroll lg:w-3/4 lg:mx-auto">
                 <Header tokenpass={token}/>
                 <div className='mb-20'></div>
                 <Mission/>
         
                 <BarForm onSearch={searchHandler}/>
-
+                
                 <CoinListed filteredCoins={displayData} isWatch={isWatch}/>
+            
 
-                <div className='w-full flex items-center justify-between px-4'>
+                <div className='w-full flex items-center justify-between px-4 lg:justify-around'>
     
-                    <button  className='w-2/5 bg-gray-500 rounded-full h-10 text-white  font-semibold font-sans shadow-2xl hover:bg-black 'onClick={prevHandler}>Prev</button>
-                    <button  className='w-2/5 bg-gray-500 rounded-full h-10 text-white font-semibold  font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
+                    <button  className='w-2/5 lg:w-1/4 bg-gray-500 rounded-full h-10 text-white  font-semibold font-sans shadow-2xl hover:bg-black 'onClick={prevHandler}>Prev</button>
+                    <button  className='w-2/5 lg:w-1/4 bg-gray-500 rounded-full h-10 text-white font-semibold  font-sans shadow-2xl hover:bg-black'onClick={nextHandler}>Next</button>
                 
         
                 </div>

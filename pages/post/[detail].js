@@ -1,17 +1,17 @@
 import { useEffect , useState  } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import { ResponsiveContainer,AreaChart,XAxis,YAxis,Area,Tooltip,CartesianGrid} from 'recharts'
 import DetailBanner from '../../components/detail_banner'
-import Header from '../../components/header'
+import Header from '../../components/layout/header'
 import MarketData from '../../components/market_data'
 import millify from 'millify'
 import Description from '../../components/detail_coin_description'
-import Link from 'next/link'
 import News from '../../components/news'
-import Footer from '../../components/footer'
+import Footer from '../../components/layout/footer'
 import Cookies from 'js-cookie'
 import OrderBanner from '../../components/buysellBanner'
+import {getDetailData , getChartData} from '../../services/coingecko'
+
 
 
 export default function Detail() {
@@ -63,12 +63,8 @@ export default function Detail() {
     let resMarkData = ''
 
     useEffect(() => {
-        let config = {
-            headers:{'Access-Control-Allow-Origin':'*'}
-        }
-        const request = axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=20&interval=daily`,config)
-        .then(res => {
-            resChartData = res.data.prices
+        getChartData(id).then(res => {
+            resChartData = res.prices
             setGraphData(formatData(resChartData))
        
         })
@@ -78,27 +74,23 @@ export default function Detail() {
     }, [])
 
     useEffect(() => {
-        let config = {
-            headers:{'Access-Control-Allow-Origin':'*'}
-        }
-        const request = axios.get(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&market_data=true&community_data=false`,config)
-        .then(res => {
-            resMarkData = res.data
+        getDetailData(id).then(res => {
+            resMarkData = res
             setMarkData(
                 { 
-                    id: res.data.id,
-                    curr_price:res.data.market_data.current_price.usd,
-                    logo:res.data.image.small,
-                    changePerc:res.data.market_data.price_change_percentage_24h_in_currency.usd,
-                    changeUsd:formatUsdChange(res.data.market_data.price_change_24h_in_currency.usd),
+                    id: res.id,
+                    curr_price:res.market_data.current_price.usd,
+                    logo:res.image.small,
+                    changePerc:res.market_data.price_change_percentage_24h_in_currency.usd,
+                    changeUsd:formatUsdChange(res.market_data.price_change_24h_in_currency.usd),
 
-                    desc:res.data.description.en,
+                    desc:res.description.en,
 
-                    link:res.data.links.homepage,
-                    vol:millify(res.data.market_data.total_volume.usd),
-                    mCap:millify(res.data.market_data.market_cap.usd),
-                    high_24h:millify(res.data.market_data.high_24h.usd),
-                    low_24h:millify(res.data.market_data.low_24h.usd)
+                    link:res.links.homepage,
+                    vol:millify(res.market_data.total_volume.usd),
+                    mCap:millify(res.market_data.market_cap.usd),
+                    high_24h:millify(res.market_data.high_24h.usd),
+                    low_24h:millify(res.market_data.low_24h.usd)
                  }
                 )
 
@@ -158,7 +150,7 @@ export default function Detail() {
         <Description id={markData.id} desc={markData.desc} />
         </div>
         { isAuth == undefined ? 
-        (<><p>test</p></>):
+        (<></>):
         (<><OrderBanner id={id}/></>)}
         
         <News />

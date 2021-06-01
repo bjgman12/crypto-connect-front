@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Footer from '../components/footer'
-import Header from '../components/header'
+import Footer from '../components/layout/footer'
+import Header from '../components/layout/header'
 import BannerLog from '../components/logFormComps/logBanner'
 import LogForm from '../components/logFormComps/login'
 import { getToken, login } from '../services/login'

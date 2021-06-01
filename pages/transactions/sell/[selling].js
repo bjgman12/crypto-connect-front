@@ -1,13 +1,13 @@
-import Header from '../../../components/header'
-import Footer from '../../../components/footer'
+import Header from '../../../components/layout/header'
+import Footer from '../../../components/layout/footer'
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { postTransactions } from '../../../services/wallet';
 import Cookies from 'js-cookie'
 import { getBalance, currentCoins, getTransactions } from '../../../services/wallet'
 import { CurrencyDollarIcon, CreditCardIcon } from '@heroicons/react/outline'
+import {getDetailData} from '../../../services/coingecko'
 
 
 export default function Sell(){
@@ -28,17 +28,13 @@ export default function Sell(){
     const [ownedCoins, setOwnedCoins] = useState('loading...')
 
     useEffect(() => {
-        let config = {
-            headers:{'Access-Control-Allow-Origin':'*'}
-        }
-        const request = axios.get(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&market_data=true&community_data=false`,config)
-        .then(res => {
+        getDetailData(id).then(res => {
             // console.log("res is", res)
             setCoinInfo(
                 { 
-                    name: res.data.id,
-                    curr_price:res.data.market_data.current_price.usd,
-                    logo:res.data.image.small,
+                    name: res.id,
+                    curr_price:res.market_data.current_price.usd,
+                    logo:res.image.small,
                  }
                 )
             const token = Cookies.get('token')
@@ -49,9 +45,9 @@ export default function Sell(){
     
             getTransactions(token).then(response => {
                 let coins = currentCoins(response)
-                let resultCoins = coins.filter(coin => coin.coin == res.data.id);
+                let resultCoins = coins.filter(coin => coin.coin == res.id);
                 if (resultCoins[0]){
-                    setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.data.market_data.current_price.usd).toFixed(2))
+                    setOwnedCoins(Number.parseFloat(resultCoins[0].units * res.market_data.current_price.usd).toFixed(2))
                 }
                 else{
                     setOwnedCoins(0)

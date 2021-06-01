@@ -27,7 +27,7 @@ export default function News() {
     }, [])
 
     return (
-        <div className="ml-3 bg-gradient-to-b from-gray-300 via-gray-100 to-white mt-4 mr-3 rounded-md pl-2 flex-wrap mb-24 w-11/12">
+        <div className="ml-3 bg-gradient-to-b from-gray-300 via-gray-100 to-white mt-4 mr-3 rounded-md pl-2 flex-wrap mb-24 w-11/12 lg:w-1/2 lg:mx-auto">
             <h2 className='text-purple-800 text-lg font-semibold pt-3'> News</h2>
             <div className='bg-white shadow-2xl pl-3 pt-1 rounded-lg w-11/12 mb-2 hover:bg-gray-300'>
             <p className="text-black font-semibold">{ article1 } </p>

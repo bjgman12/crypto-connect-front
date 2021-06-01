@@ -106,25 +106,25 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
         <>
         <Link href={`post/${id}`}>
 
-        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300'>
+        <div className='z-0 grid grid-cols-5 grid-rows-1 gap-1 ml-2 mr-2 bg-white rounded-md shadow-2xl hover:bg-gray-300 lg:w-2/6 lg:mx-auto'>
 
-            <img className='h-8 mt-1 ml-4 ' src={image}/>
-            <p className='pt-2 font-semibold text-black'> {symbol.toUpperCase()} </p>
+            <img className='h-8 mt-1 ml-4 lg:mt-14 lg:absolute ' src={image}/>
+            <p className='pt-2 font-semibold text-black lg:mx-auto'> {symbol.toUpperCase()} </p>
             <p className='pt-2 font-semibold text-black justify-self-end'> 
                 <NumberFormat value={ price }  displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2} fixedDecimalScale={2}/>
             </p>
             {priceChange > 0 ?
             (
-            <p className='col-span-2 pt-2 pl-6 font-semibold text-green-500'> +{priceChange.toFixed(2)}%</p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-green-500 lg:ml-20'> +{priceChange.toFixed(2)}%</p>
             ) :
             (
-            <p className='col-span-2 pt-2 pl-6 font-semibold text-red-500'> {priceChange.toFixed(2)}%</p>
+            <p className='col-span-2 pt-2 pl-6 font-semibold text-red-500 lg:ml-20'> {priceChange.toFixed(2)}%</p>
             ) }
             </div>
             </Link>
-            <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl z-0'>
+            <div className='grid grid-cols-5 grid-rows-1 gap-1 bg-white  mb-2 ml-2 mr-2 rounded-md shadow-2xl z-0 lg:w-1/3 lg:mx-auto'>
             { ! isAuth  ?
-            (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4'>
+            (<ResponsiveContainer height={100} width={300} className='col-span-5 ml-4 lg:mx-auto'>
             <LineChart data={graphData}>
 
                <defs>
@@ -154,16 +154,16 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
 
            (<div className='grid grid-rows-1 grid-cols-3 w-full '>
             { ! isWatch ? (
-           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10' onClick={addWatchList}/>):
-           (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700' onClick={deleter} />)
+           <SaveIcon className='h-10 mt-8 pr-4 ml-4 hover:text-purple-500 hover:z-10 lg:relative lg:bottom-3 lg:left-5 lg:pl-1' onClick={addWatchList}/>):
+           (<TrashIcon className='h-10 mt-8 ml-4 hover:text-red-700 lg:relative lg:bottom-3 lg:left-5 lg:pl-1' onClick={deleter} />)
             }
-           <ResponsiveContainer height={100} width={210} className='col-span-2 ml-20 z-0 '>
+           <ResponsiveContainer height={100} width={300} className='col-span-2 ml-20 z-0 '>
 
             <LineChart data={graphData}>
 
                <defs>
                    <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-                       <stop  offset="0%" stopColor="#245187" stopOpacity={0.4}/>ol-span-5
+                       <stop  offset="0%" stopColor="#245187" stopOpacity={0.4}/>
                        <stop  offset="75%" stopColor="#245187" stopOpacity={0.05}/>
                    </linearGradient>
                </defs>
