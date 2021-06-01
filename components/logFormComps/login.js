@@ -66,10 +66,10 @@ export default function LogForm() {
 
     return (
         <>
-        <div className='flex items-center h-screen w-screen'>
+        <div className='flex items-center h-screen w-screen lg:items-baseline lg:mt-20'>
             <div className='w-screen pb-20'>
             <BannerLog/>
-            <form className='bg-gradient-to-b from-gray-300 via-gray-200 to-white block w-11/12 mx-auto rounded-lg s' onSubmit={logHandler}>
+            <form className='bg-gradient-to-b from-gray-300 via-gray-200 to-white block w-11/12 mx-auto rounded-lg lg:w-1/4' onSubmit={logHandler}>
                 <input className='w-3/4 bg-gray-500 ml-10 h-12 rounded-md mt-4' id='email'type='text' placeholder=' Email@anActualemail.com'/>
                 <input className='w-3/4 bg-gray-500 ml-10 mt-6 h-12 rounded-md' id='pass' type='password' placeholder=' Password'/>
                 { !logOrSign ? 
@@ -83,7 +83,7 @@ export default function LogForm() {
                  </>)
                 }
             </form>
-            <div className='bg-white mt-2 w-screen grid grid-cols-2 grid-row-1 ml-10  w-3/4' >
+            <div className='bg-white mt-2 w-screen grid grid-cols-2 grid-row-1 ml-10 lg:w-1/4 lg:mx-auto' >
                 { logOrSign ? 
                 (<>
                 <p className='text-blue-700 pl-1'>Have an Account?</p>

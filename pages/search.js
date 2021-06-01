@@ -1,5 +1,5 @@
 import Header from '../components/layout/header'
-import CoinListed from "../components/listed";
+import CoinListed from "../components/listed"
 import SearchForm from '../components/searchForm'
 import Footer from '../components/layout/footer'
 import React, {useState, useEffect} from 'react'
@@ -123,9 +123,9 @@ export default function Search() {
             <CoinListed filteredCoins={displayData} isWatch={isWatch}/>
 
             <div className='w-11/12 mx-auto flex items-center justify-between'>
-            <button className={showButtons ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute' } onClick={prevHandler} >Prev</button>
+            <button className={showButtons ? 'visible w-2/5 border-2  bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute' } onClick={prevHandler} >Prev</button>
 
-            <button className={showButtons ? 'visible w-2/5 border-2 rounded-md bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
+            <button className={showButtons ? 'visible w-2/5 border-2 bg-gray-800 text-white rounded-lg h-10' : 'invisible absolute'}  onClick={nextHandler}>Next</button>
             </div>
             <br className='mb-8'/>
             <Footer/>

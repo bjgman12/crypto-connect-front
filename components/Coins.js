@@ -145,8 +145,6 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
                dataKey='price'
                />
 
-
-
                <CartesianGrid opacity={0.7} vertical={false} />
 
            </LineChart>
@@ -179,14 +177,11 @@ export default function Coin( { price , priceChange, image, symbol,id , isWatch}
                dataKey='price'
                />
 
-
-
                <CartesianGrid opacity={0.7} vertical={false} />
 
            </LineChart>
            </ResponsiveContainer>
 
-           
            </div>)
            }
         </div>
