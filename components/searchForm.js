@@ -73,7 +73,7 @@ export default function SearchForm({onSearch}){
         <div className=''>
         <div className='mb-20'></div>
 
-            <div className=''>
+            <div className=' w-1/3 mx-auto items-center flex-col'>
                 <h2 className='text-md text-purple-700 ml-10'>Search by coin name, or min and max.</h2>
                 <label className='text-lg text-purple-700 ml-10' for='coin_search'>Coin Name</label>
                 <label className='text-lg text-purple-700 ml-10' for='min_max'>Min/Max Price</label>
@@ -82,7 +82,7 @@ export default function SearchForm({onSearch}){
                 <input className='py-1 ml-32 bg-gray-800 text-white rounded-md mb-3' type="radio" id='min_max' name='coin_mm' value='min_max' onClick={handleMinMaxClick}/>
             </div>
 
-            <form onSubmit={coinFormHandler} className={coin ? 'visible w-11/12 shadow-2xl mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white text-center mb-4 ' : 'invisible absolute'}>
+            <form onSubmit={coinFormHandler} className={coin ? 'visible w-11/12 shadow-2xl mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white text-center mb-4 lg:w-1/3' : 'invisible absolute'}>
                 <div className=''>
                     <input className='w-3/4 bg-gray-500  rounded-lg h-8 text-center text-white mt-3 mb-3' type="text" name='coin' id='coin' value={coinName.coin} onChange={inputChangeHandlerName} placeholder='Coin Name Here'></input>
                     <br></br>
@@ -90,7 +90,7 @@ export default function SearchForm({onSearch}){
                 </div>
             </form>
 
-            <form onSubmit={formHandler} className={min_Max ? 'visible w-11/12 mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white shadow-2xl mb-4 ' : 'invisible absolute'}>
+            <form onSubmit={formHandler} className={min_Max ? 'visible w-11/12 mx-auto rounded-md bg-gradient-to-b from-gray-100 via-gray-100 to-white shadow-2xl mb-4 lg:w-1/3 ' : 'invisible absolute'}>
                 <div>
                     <p className='text-md text-purple-700 w-3/4 mx-auto text-center'>Search by ascending or decending</p>
                     <div className='text-purple-700 flex-wrap'>

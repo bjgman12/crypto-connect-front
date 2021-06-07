@@ -13,8 +13,6 @@ export default function LogForm() {
     const[created,setCreated] = useState(false)
     
     
-
-
     const flipHandler = () => {
         const log = true
         const sign = false
@@ -25,12 +23,9 @@ export default function LogForm() {
         else {
             setLogOrsign(log)
         }
-        console.log(logOrSign)
         return 0
 
     }
-
-
 
     async function logHandler(e){
         e.preventDefault()
