@@ -6,7 +6,8 @@ This is the front-end repo of our app CryptoConnect. CryptoConnect is a simulate
 
 ## Deployed site:
 
-https://crypto-connect.vercel.app/
+https://crypto-connect.vercel.app/ (Base site)
+https://crypto-connect-front.vercel.app/ (Improved UI)
 
 *Make sure to use mobile view with iphoneX display settings*
 
