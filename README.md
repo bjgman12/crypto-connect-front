@@ -1,4 +1,4 @@
-# Crypto Connect Frontend
+# Crypto Connect Frontends
 
 ## What does this do?
 
